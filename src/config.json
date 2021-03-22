@@ -1,0 +1,4 @@
+{
+  "ENV": "$ENV",
+  "NI_BASE_URL": "$NI_BASE_URL"
+}
