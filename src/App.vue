@@ -1,13 +1,9 @@
 <template>
-  <p>Environment: {{ environment }}</p>
-  <p>Base Url: {{ baseUrl }}</p>
   <the-customers></the-customers>
   <the-footer></the-footer>
 </template>
 
 <script>
-import Config from "./config.json";
-
 import TheFooter from "./components/UI/TheFooter.vue";
 import TheCustomers from "./components/customers/TheCustomers.vue";
 
@@ -17,10 +13,7 @@ export default {
     TheCustomers,
   },
   data() {
-    return {
-      environment: Config.ENV,
-      baseUrl: Config.NI_BASE_URL,
-    };
+    return {};
   },
 };
 </script>
