@@ -1,26 +1,43 @@
 <template>
   <dialog open>
-    <header>
-      <h1>{{ customerName }}</h1>
-    </header>
-    <p>{{ customerDescription }}</p>
+    <div v-if="customer">
+      <header>
+        <h1>{{ customer.name }}</h1>
+      </header>
+      <p>{{ customer.description }}</p>
+    </div>
+    <p v-if="error">Couldn't fetch the customer details.</p>
     <button @click="$emit('hide-details', true)">Return to list</button>
   </dialog>
 </template>
 
 <script>
+import axios from "../scripts/axios-api";
 export default {
   props: {
-    customerName: {
+    customerUrl: {
       type: String,
       required: true,
     },
-    customerDescription: {
-      type: String,
-      required: false,
-    },
   },
   emits: ["hide-details"],
+  data() {
+    return {
+      customer: {},
+      error: false,
+    };
+  },
+  created() {
+    axios
+      .get("customers")
+      .then((response) => {
+        this.customer = response.data.results[0];
+      })
+      .catch((error) => {
+        this.error = error;
+        console.log(error);
+      });
+  },
 };
 </script>
 
