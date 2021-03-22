@@ -11,7 +11,7 @@ RUN jq 'to_entries | map_values({ (.key) : ("$" + .key) }) | reduce .[] as $item
 RUN npm install && npm run build
 
 # production stage
-FROM nginx:stable-alpine as production-stage
+FROM nginx:stable as production-stage
 COPY --from=build-stage /app/dist /usr/share/nginx/html
 RUN rm /etc/nginx/conf.d/default.conf
 COPY nginx.conf /etc/nginx/conf.d
