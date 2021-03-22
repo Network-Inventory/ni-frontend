@@ -25,8 +25,8 @@ Install the npm packages with the following command:
 npm install
 ```
 
-Run the development server:
+start the backend and run the development server:
 
 ```
-docker-compose up
+docker-compose up -d && npm run serve
 ```
