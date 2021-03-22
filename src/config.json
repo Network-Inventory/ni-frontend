@@ -1,4 +1,4 @@
 {
-  "ENV": "$ENV",
+  "NI_MODE": "$NI_MODE",
   "NI_BASE_URL": "$NI_BASE_URL"
 }
