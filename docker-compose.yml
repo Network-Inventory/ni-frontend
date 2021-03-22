@@ -1,0 +1,33 @@
+version: "3"
+
+services:
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_DB
+      - POSTGRES_PASSWORD
+
+  backend:
+    image: ghcr.io/network-inventory/ni-backend/ni-backend:latest
+    environment:
+      - DJANGO_SETTINGS_MODULE
+      - DJANGO_DEBUG
+      - DJANGO_SECRET_KEY
+      - NI_BASE_URL
+    depends_on:
+      - db
+    ports:
+      - 80:8000
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile-dev
+    volumes:
+      - .:/app
+    environment:
+      - NI_BASE_URL
+    depends_on:
+      - backend
+    ports:
+      - 8080:8080
