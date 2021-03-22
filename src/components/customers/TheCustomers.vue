@@ -1,8 +1,7 @@
 <template>
   <customer-details
     v-if="showCustomerDetails"
-    :customer-name="customerName"
-    :customer-description="customerDescription"
+    :customer-url="customerUrl"
     @hide-details="hideDetails"
   ></customer-details>
 
@@ -63,8 +62,7 @@ export default {
       customers: [],
       addCustomerDialogVisible: false,
       showCustomerDetails: false,
-      customerName: "",
-      customerDescription: "",
+      customerUrl: "",
     };
   },
   methods: {
@@ -88,8 +86,7 @@ export default {
       this.addCustomerDialogVisible = false;
     },
     showDetails(customer) {
-      this.customerName = customer.name;
-      this.customerDescription = customer.description;
+      this.customerUrl = customer.url;
       this.showCustomerDetails = true;
     },
     hideDetails() {
