@@ -4,19 +4,27 @@ services:
   db:
     image: postgres
     environment:
-      - POSTGRES_DB
-      - POSTGRES_PASSWORD
+      - POSTGRES_DB=network_inventory
+      - POSTGRES_PASSWORD=password
 
   backend:
     image: ghcr.io/network-inventory/ni-backend/ni-backend:latest
     environment:
-      - DJANGO_SETTINGS_MODULE
-      - DJANGO_SECRET_KEY
-      - NI_HOST
-      - NI_MODE
-      - POSTGRES_DB
-      - POSTGRES_PASSWORD
+      - DJANGO_SETTINGS_MODULE=network_inventory.settings.docker
+      - DJANGO_SECRET_KEY=foo
+      - NI_MODE=development
+      - POSTGRES_DB=network_inventory
+      - POSTGRES_PASSWORD=password
     depends_on:
       - db
     ports:
       - 80:8000
+
+  frontend:
+    build:
+      context: .
+      dockerfile: ./Dockerfile.dev
+    ports:
+      - 8080:8080
+    volumes:
+      - .:/app
