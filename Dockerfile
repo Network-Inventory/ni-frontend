@@ -18,7 +18,7 @@ RUN /app
 COPY --from=build-stage /app/dist /app
 RUN rm /etc/nginx/conf.d/default.conf
 COPY nginx_network_inventory.conf /etc/nginx/conf.d/nginx_network_inventory.conf
-ENV JSFOLDER=/usr/share/nginx/html/js/*.js
+ENV JSFOLDER=/app/js/*.js
 COPY ./start-nginx.sh /usr/bin/start-nginx.sh
 RUN chmod +x /usr/bin/start-nginx.sh
 CMD [ "start-nginx.sh" ]
