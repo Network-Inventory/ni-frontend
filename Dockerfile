@@ -14,7 +14,7 @@ RUN npm run build
 
 # production stage
 FROM nginx:stable as production-stage
-RUN /app
+RUN mkdir /app
 COPY --from=build-stage /app/dist /app
 RUN rm /etc/nginx/conf.d/default.conf
 COPY nginx_network_inventory.conf /etc/nginx/conf.d/nginx_network_inventory.conf
