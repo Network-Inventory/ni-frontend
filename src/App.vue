@@ -4,7 +4,7 @@
 </template>
 
 <script>
-import TheFooter from "./components/UI/TheFooter.vue";
+import TheFooter from "./components/layout/TheFooter.vue";
 import TheCustomers from "./components/customers/TheCustomers.vue";
 
 export default {
