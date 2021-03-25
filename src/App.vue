@@ -38,13 +38,4 @@ html {
   padding: 2rem;
   background-color: #ffffff;
 }
-button {
-  font: inherit;
-  border: 1px solid #0076bb;
-  background-color: #0076bb;
-  color: white;
-  cursor: pointer;
-  padding: 0.75rem 2rem;
-  border-radius: 30px;
-}
 </style>

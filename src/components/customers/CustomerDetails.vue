@@ -7,7 +7,9 @@
       <p>{{ customer.description }}</p>
     </div>
     <p v-if="error">Couldn't fetch the customer details.</p>
-    <button @click="$emit('hide-details', true)">Return to list</button>
+    <base-button @click="$emit('hide-details', true)">
+      Return to list
+    </base-button>
   </dialog>
 </template>
 

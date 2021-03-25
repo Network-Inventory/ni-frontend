@@ -12,7 +12,7 @@
       <div v-if="errorMessage">
         <p>You need to fill out both inputs.</p>
       </div>
-      <button>Save</button>
+      <base-button>Save</base-button>
     </form>
   </dialog>
 </template>
