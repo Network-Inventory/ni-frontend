@@ -12,11 +12,7 @@
 
   <div v-if="!addCustomerDialogVisible && !showCustomerDetails" class="card">
     <header><h1>List of Customers</h1></header>
-    <div>
-      <form @submit.prevent="addCustomer">
-        <button>Add Customer</button>
-      </form>
-    </div>
+    <base-button @click="addCustomer()">Add Customer</base-button>
     <table class="table table-hover table-bordered">
       <tr>
         <th class="orderable">Name</th>
@@ -49,6 +45,7 @@
 
 <script>
 import getAPI from "../scripts/axios-api";
+//import BaseButton from "../UI/BaseButton.vue";
 import AddCustomer from "./AddCustomer.vue";
 import CustomerDetails from "./CustomerDetails.vue";
 
@@ -56,6 +53,7 @@ export default {
   components: {
     AddCustomer,
     CustomerDetails,
+    //   BaseButton,
   },
   data() {
     return {
