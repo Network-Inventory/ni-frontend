@@ -8,7 +8,7 @@
     </div>
     <p v-if="error">Couldn't fetch the customer details.</p>
     <base-button @click="$emit('hide-details', true)">
-      Return to list
+      Return to Customers
     </base-button>
   </dialog>
 </template>
