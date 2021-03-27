@@ -1,16 +1,14 @@
 <template>
-  <the-customers></the-customers>
+  <router-view></router-view>
   <the-footer></the-footer>
 </template>
 
 <script>
 import TheFooter from "./components/layout/TheFooter.vue";
-import TheCustomers from "./components/customers/TheCustomers.vue";
 
 export default {
   components: {
     TheFooter,
-    TheCustomers,
   },
   data() {
     return {};
