@@ -11,7 +11,7 @@
     @cancel="closeDialog"
   ></add-customer>
 
-  <div v-if="!showCustomerDetails" class="card">
+  <base-card v-if="!showCustomerDetails">
     <header><h1>Customers</h1></header>
     <base-button @click="openAddCustomer()">Add Customer</base-button>
     <table class="table table-hover table-bordered">
@@ -41,7 +41,7 @@
         </td>
       </tr>
     </table>
-  </div>
+  </base-card>
 </template>
 
 <script>

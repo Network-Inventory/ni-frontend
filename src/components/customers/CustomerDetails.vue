@@ -1,5 +1,5 @@
 <template>
-  <dialog open>
+  <base-card>
     <div v-if="customer">
       <header>
         <h1>{{ customer.name }}</h1>
@@ -10,12 +10,14 @@
     <base-button @click="$emit('hide-details', true)">
       Return to Customers
     </base-button>
-  </dialog>
+  </base-card>
 </template>
 
 <script>
 import axios from "../scripts/axios-api";
+import BaseCard from "../UI/BaseCard.vue";
 export default {
+  components: { BaseCard },
   props: {
     customerUrl: {
       type: String,
