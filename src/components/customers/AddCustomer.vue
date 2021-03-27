@@ -1,27 +1,25 @@
 <template>
-  <dialog open>
-    <header><h1>Add Customer</h1></header>
+  <base-dialog @cancel="$emit('cancel')" title="Add Customer">
     <form @submit.prevent="addCustomer">
       <label for="customer-name">Name</label>
       <input type="text" v-model.trim="customerName" id="customer-name" />
       <label id="customer-description">Description</label>
       <textarea
-        v-model="customerDescription"
+        v-model.trim="customerDescription"
         id="customer-description"
       ></textarea>
       <div v-if="errorMessage">
         <p>You need to fill out both inputs.</p>
       </div>
-      <base-button>Save</base-button>
+      <base-button type="submit">Save</base-button>
     </form>
-  </dialog>
+  </base-dialog>
 </template>
 
 <script>
 import getAPI from "../scripts/axios-api";
 
 export default {
-  emits: ["created-customer"],
   data() {
     return {
       customerName: "",
@@ -47,7 +45,7 @@ export default {
             description: this.customerDescription,
           })
           .then((response) => {
-            this.$emit("created-customer", response.data);
+            this.$emit("ok", response.data);
           })
           .catch((error) => {
             console.log(error);

@@ -1,6 +1,6 @@
 <template>
   <teleport to="body">
-    <div @click="$emit('close')"></div>
+    <div @click="$emit('cancel')"></div>
     <dialog open>
       <header>
         <slot name="header">
@@ -10,7 +10,7 @@
       <section><slot name="default"></slot></section>
       <menu
         ><slot name="actions">
-          <base-button @click="$emit('close')">Close</base-button>
+          <base-button @click="$emit('cancel')">Cancel</base-button>
         </slot></menu
       >
     </dialog>
@@ -24,7 +24,7 @@ export default {
       required: false,
     },
   },
-  emits: ["close"],
+  emits: ["ok", "cancel"],
 };
 </script>
 <style scoped>

@@ -7,12 +7,13 @@
 
   <add-customer
     v-if="addCustomerDialogVisible"
-    @created-customer="closeDialog"
+    @ok="addCustomer"
+    @cancel="closeDialog"
   ></add-customer>
 
-  <div v-if="!addCustomerDialogVisible && !showCustomerDetails" class="card">
+  <div v-if="!showCustomerDetails" class="card">
     <header><h1>List of Customers</h1></header>
-    <base-button @click="addCustomer()">Add Customer</base-button>
+    <base-button @click="openAddCustomer()">Add Customer</base-button>
     <table class="table table-hover table-bordered">
       <tr>
         <th class="orderable">Name</th>
@@ -76,10 +77,13 @@ export default {
           console.log(err);
         });
     },
-    addCustomer() {
+    openAddCustomer() {
       this.addCustomerDialogVisible = true;
     },
-    closeDialog(customer) {
+    closeDialog() {
+      this.addCustomerDialogVisible = false;
+    },
+    addCustomer(customer) {
       this.customers.unshift(customer);
       this.addCustomerDialogVisible = false;
     },
