@@ -12,7 +12,7 @@
   ></add-customer>
 
   <div v-if="!showCustomerDetails" class="card">
-    <header><h1>List of Customers</h1></header>
+    <header><h1>Customers</h1></header>
     <base-button @click="openAddCustomer()">Add Customer</base-button>
     <table class="table table-hover table-bordered">
       <tr>
