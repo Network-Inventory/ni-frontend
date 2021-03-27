@@ -4,7 +4,7 @@
 </template>
 
 <script>
-import TheFooter from "./components/UI/TheFooter.vue";
+import TheFooter from "./components/layout/TheFooter.vue";
 import TheCustomers from "./components/customers/TheCustomers.vue";
 
 export default {
@@ -37,14 +37,5 @@ html {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   padding: 2rem;
   background-color: #ffffff;
-}
-button {
-  font: inherit;
-  border: 1px solid #0076bb;
-  background-color: #0076bb;
-  color: white;
-  cursor: pointer;
-  padding: 0.75rem 2rem;
-  border-radius: 30px;
 }
 </style>

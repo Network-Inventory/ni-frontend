@@ -1,5 +1,5 @@
 <template>
-  <dialog open>
+  <base-card>
     <div v-if="customer">
       <header>
         <h1>{{ customer.name }}</h1>
@@ -7,13 +7,17 @@
       <p>{{ customer.description }}</p>
     </div>
     <p v-if="error">Couldn't fetch the customer details.</p>
-    <button @click="$emit('hide-details', true)">Return to list</button>
-  </dialog>
+    <base-button @click="$emit('hide-details', true)">
+      Return to Customers
+    </base-button>
+  </base-card>
 </template>
 
 <script>
 import axios from "../scripts/axios-api";
+import BaseCard from "../UI/BaseCard.vue";
 export default {
+  components: { BaseCard },
   props: {
     customerUrl: {
       type: String,

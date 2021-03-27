@@ -7,16 +7,13 @@
 
   <add-customer
     v-if="addCustomerDialogVisible"
-    @created-customer="closeDialog"
+    @ok="addCustomer"
+    @cancel="closeDialog"
   ></add-customer>
 
-  <div v-if="!addCustomerDialogVisible && !showCustomerDetails" class="card">
-    <header><h1>List of Customers</h1></header>
-    <div>
-      <form @submit.prevent="addCustomer">
-        <button>Add Customer</button>
-      </form>
-    </div>
+  <base-card v-if="!showCustomerDetails">
+    <header><h1>Customers</h1></header>
+    <base-button @click="openAddCustomer()">Add Customer</base-button>
     <table class="table table-hover table-bordered">
       <tr>
         <th class="orderable">Name</th>
@@ -44,11 +41,12 @@
         </td>
       </tr>
     </table>
-  </div>
+  </base-card>
 </template>
 
 <script>
 import getAPI from "../scripts/axios-api";
+//import BaseButton from "../UI/BaseButton.vue";
 import AddCustomer from "./AddCustomer.vue";
 import CustomerDetails from "./CustomerDetails.vue";
 
@@ -56,6 +54,7 @@ export default {
   components: {
     AddCustomer,
     CustomerDetails,
+    //   BaseButton,
   },
   data() {
     return {
@@ -78,10 +77,13 @@ export default {
           console.log(err);
         });
     },
-    addCustomer() {
+    openAddCustomer() {
       this.addCustomerDialogVisible = true;
     },
-    closeDialog(customer) {
+    closeDialog() {
+      this.addCustomerDialogVisible = false;
+    },
+    addCustomer(customer) {
       this.customers.unshift(customer);
       this.addCustomerDialogVisible = false;
     },
