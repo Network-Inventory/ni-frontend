@@ -1,11 +1,9 @@
 <template>
   <base-card>
-    <div v-if="customer">
-      <header>
-        <h1>{{ customer.name }}</h1>
-      </header>
-      <p>{{ customer.description }}</p>
-    </div>
+    <header>
+      <h1>{{ customer.name }}</h1>
+    </header>
+    <p>{{ customer.description }}</p>
     <p v-if="error">Couldn't fetch the customer details.</p>
     <base-router-button to="/">
       Return to Customers
