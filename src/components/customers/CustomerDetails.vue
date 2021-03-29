@@ -5,9 +5,9 @@
     </header>
     <p>{{ customer.description }}</p>
     <p v-if="error">Couldn't fetch the customer details.</p>
-    <base-router-button to="/">
-      Return to Customers
-    </base-router-button>
+    <base-button @click="$router.go(-1)">
+      Back
+    </base-button>
   </base-card>
 </template>
 
