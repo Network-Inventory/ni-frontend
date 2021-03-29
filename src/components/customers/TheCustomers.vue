@@ -42,13 +42,11 @@
 
 <script>
 import getAPI from "../scripts/axios-api";
-//import BaseButton from "../UI/BaseButton.vue";
 import AddCustomer from "./AddCustomer.vue";
 
 export default {
   components: {
     AddCustomer,
-    //   BaseButton,
   },
   data() {
     return {
