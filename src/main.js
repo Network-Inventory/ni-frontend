@@ -8,6 +8,7 @@ import BaseButton from "./components/UI/BaseButton";
 import BaseCard from "./components/UI/BaseCard";
 import BaseDialog from "./components/UI/BaseDialog";
 import BaseRouterButton from "./components/UI/BaseRouterButton";
+import BaseTable from "./components/UI/BaseTable";
 import TheCustomers from "./components/customers/TheCustomers";
 import CustomerDetails from "./components/customers/CustomerDetails";
 
@@ -24,6 +25,7 @@ app.component("base-card", BaseCard);
 app.component("base-button", BaseButton);
 app.component("base-dialog", BaseDialog);
 app.component("base-router-button", BaseRouterButton);
+app.component("base-table", BaseTable);
 app.use(router);
 app.mount("#app");
 

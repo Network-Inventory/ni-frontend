@@ -8,7 +8,7 @@
   <base-card>
     <header><h1>Customers</h1></header>
     <base-button @click="openAddCustomer()">Add Customer</base-button>
-    <table class="table table-hover table-bordered">
+    <base-table>
       <tr>
         <th class="orderable">Name</th>
         <th>Nets</th>
@@ -36,7 +36,7 @@
           <a href="#" @click="deleteCustomer(customer.url)">delete</a>
         </td>
       </tr>
-    </table>
+    </base-table>
   </base-card>
 </template>
 
