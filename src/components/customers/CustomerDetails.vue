@@ -15,9 +15,7 @@
 
 <script>
 import axios from "../scripts/axios-api";
-import BaseCard from "../UI/BaseCard.vue";
 export default {
-  components: { BaseCard },
   data() {
     return {
       customer: {},
