@@ -7,9 +7,9 @@
       <p>{{ customer.description }}</p>
     </div>
     <p v-if="error">Couldn't fetch the customer details.</p>
-    <router-link to="/">
+    <base-router-button to="/">
       Return to Customers
-    </router-link>
+    </base-router-button>
   </base-card>
 </template>
 
@@ -38,15 +38,4 @@ export default {
 };
 </script>
 
-<style scoped>
-dialog {
-  margin: 0;
-  position: fixed;
-  top: 20vh;
-  left: 30%;
-  width: 40%;
-  background-color: white;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-  padding: 1rem;
-}
-</style>
+<style scoped></style>
