@@ -52,8 +52,6 @@ export default {
     return {
       customers: [],
       addCustomerDialogVisible: false,
-      showCustomerDetails: false,
-      customerUrl: "",
     };
   },
   methods: {
