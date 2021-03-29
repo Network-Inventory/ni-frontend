@@ -20,8 +20,8 @@ button {
 
 button:hover,
 button:active {
-  background-color: #270041;
-  border-color: #270041;
+  border-color: #1a037e;
+  background-color: #1a037e;
 }
 
 .flat {
