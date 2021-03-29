@@ -7,9 +7,9 @@
       <p>{{ customer.description }}</p>
     </div>
     <p v-if="error">Couldn't fetch the customer details.</p>
-    <base-button @click="$emit('hide-details', true)">
+    <router-link to="/">
       Return to Customers
-    </base-button>
+    </router-link>
   </base-card>
 </template>
 
@@ -18,13 +18,6 @@ import axios from "../scripts/axios-api";
 import BaseCard from "../UI/BaseCard.vue";
 export default {
   components: { BaseCard },
-  props: {
-    customerUrl: {
-      type: String,
-      required: true,
-    },
-  },
-  emits: ["hide-details"],
   data() {
     return {
       customer: {},
@@ -33,9 +26,9 @@ export default {
   },
   created() {
     axios
-      .get("customers")
+      .get("customers/" + this.$route.params.customerId + "/")
       .then((response) => {
-        this.customer = response.data.results[0];
+        this.customer = response.data;
       })
       .catch((error) => {
         this.error = error;
