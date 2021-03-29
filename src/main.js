@@ -8,18 +8,13 @@ import BaseButton from "./components/UI/BaseButton";
 import BaseCard from "./components/UI/BaseCard";
 import BaseDialog from "./components/UI/BaseDialog";
 import TheCustomers from "./components/customers/TheCustomers";
+import CustomerDetails from "./components/customers/CustomerDetails";
 
 const router = createRouter({
   history: createWebHistory(),
   routes: [
-    {
-      path: "/",
-      component: TheCustomers,
-    },
-    {
-      path: "/customers",
-      component: TheCustomers,
-    },
+    { path: "/", component: TheCustomers },
+    { path: "/customers/:customerId", component: CustomerDetails },
   ],
 });
 
