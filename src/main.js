@@ -11,6 +11,7 @@ import BaseRouterButton from "./components/UI/BaseRouterButton";
 import BaseTable from "./components/UI/BaseTable";
 import TheCustomers from "./components/customers/TheCustomers";
 import CustomerDetails from "./components/customers/CustomerDetails";
+import ComputerDetails from "./components/computers/ComputerDetails";
 import TheComputers from "./components/computers/TheComputers";
 
 const router = createRouter({
@@ -19,6 +20,7 @@ const router = createRouter({
     { path: "/", component: TheCustomers },
     { path: "/customers/:customerId", component: CustomerDetails },
     { path: "/computers/", component: TheComputers },
+    { path: "/computers/:computerId", component: ComputerDetails },
   ],
 });
 
