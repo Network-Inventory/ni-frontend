@@ -22,9 +22,9 @@
 
       <tr v-for="customer in customers" :key="customer.url">
         <td>
-          <a href="http://google.com" @click="showDetails(customer)">{{
+          <router-link :to="'/customers/' + customer.id">{{
             customer.name
-          }}</a>
+          }}</router-link>
         </td>
         <td><a :href="customer.url">Nets</a></td>
         <td><a :href="customer.url">Computers</a></td>
