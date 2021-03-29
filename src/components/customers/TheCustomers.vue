@@ -1,17 +1,11 @@
 <template>
-  <customer-details
-    v-if="showCustomerDetails"
-    :customer-url="customerUrl"
-    @hide-details="hideDetails"
-  ></customer-details>
-
   <add-customer
     v-if="addCustomerDialogVisible"
     @ok="addCustomer"
     @cancel="closeDialog"
   ></add-customer>
 
-  <base-card v-if="!showCustomerDetails">
+  <base-card>
     <header><h1>Customers</h1></header>
     <base-button @click="openAddCustomer()">Add Customer</base-button>
     <table class="table table-hover table-bordered">
@@ -28,7 +22,9 @@
 
       <tr v-for="customer in customers" :key="customer.url">
         <td>
-          <a href="#" @click="showDetails(customer)">{{ customer.name }}</a>
+          <router-link :to="'/customers/' + customer.id">{{
+            customer.name
+          }}</router-link>
         </td>
         <td><a :href="customer.url">Nets</a></td>
         <td><a :href="customer.url">Computers</a></td>
@@ -46,15 +42,11 @@
 
 <script>
 import getAPI from "../scripts/axios-api";
-//import BaseButton from "../UI/BaseButton.vue";
 import AddCustomer from "./AddCustomer.vue";
-import CustomerDetails from "./CustomerDetails.vue";
 
 export default {
   components: {
     AddCustomer,
-    CustomerDetails,
-    //   BaseButton,
   },
   data() {
     return {
@@ -86,13 +78,6 @@ export default {
     addCustomer(customer) {
       this.customers.unshift(customer);
       this.addCustomerDialogVisible = false;
-    },
-    showDetails(customer) {
-      this.customerUrl = customer.url;
-      this.showCustomerDetails = true;
-    },
-    hideDetails() {
-      this.showCustomerDetails = false;
     },
   },
   created() {

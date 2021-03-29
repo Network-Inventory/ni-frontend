@@ -53,7 +53,7 @@ dialog {
 }
 
 header {
-  background-color: #3a0061;
+  background-color: #0076bb;
   color: white;
   width: 100%;
   padding: 1rem;
