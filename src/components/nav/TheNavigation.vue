@@ -5,6 +5,9 @@
         <li>
           <router-link to="/">Home</router-link>
         </li>
+        <li>
+          <router-link to="/computers/">All Computers</router-link>
+        </li>
       </ul>
     </nav>
   </header>

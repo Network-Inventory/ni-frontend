@@ -11,12 +11,14 @@ import BaseRouterButton from "./components/UI/BaseRouterButton";
 import BaseTable from "./components/UI/BaseTable";
 import TheCustomers from "./components/customers/TheCustomers";
 import CustomerDetails from "./components/customers/CustomerDetails";
+import TheComputers from "./components/computers/TheComputers";
 
 const router = createRouter({
   history: createWebHistory(),
   routes: [
     { path: "/", component: TheCustomers },
     { path: "/customers/:customerId", component: CustomerDetails },
+    { path: "/computers/", component: TheComputers },
   ],
 });
 
