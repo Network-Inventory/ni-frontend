@@ -29,6 +29,7 @@ const router = createRouter({
       component: ComputerDetails,
       props: true,
     },
+    { path: "/:notFound(.*)", component: TheCustomers },
   ],
 });
 
