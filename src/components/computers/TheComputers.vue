@@ -20,7 +20,7 @@
 
       <tr v-for="computer in computers" :key="computer.url">
         <td>
-          <router-link :to="'/computers/' + computer.id">{{
+          <router-link :to="'/computers/' + getId(computer.url)">{{
             computer.name
           }}</router-link>
         </td>
@@ -45,6 +45,7 @@
 
 <script>
 import getAPI from "../scripts/axios-api";
+import getId from "../scripts/get-id-from-url";
 
 export default {
   components: {},
@@ -66,6 +67,7 @@ export default {
           console.log(err);
         });
     },
+    getId,
   },
   created() {
     getAPI

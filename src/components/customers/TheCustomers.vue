@@ -22,7 +22,7 @@
 
       <tr v-for="customer in customers" :key="customer.url">
         <td>
-          <router-link :to="'/customers/' + customer.id">{{
+          <router-link :to="'/customers/' + getId(customer.url)">{{
             customer.name
           }}</router-link>
         </td>
@@ -42,6 +42,7 @@
 
 <script>
 import getAPI from "../scripts/axios-api";
+import getId from "../scripts/get-id-from-url";
 import AddCustomer from "./AddCustomer.vue";
 
 export default {
@@ -55,6 +56,7 @@ export default {
     };
   },
   methods: {
+    getId,
     deleteCustomer(url) {
       getAPI
         .delete(url)
