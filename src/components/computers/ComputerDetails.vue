@@ -1,10 +1,10 @@
 <template>
   <base-card>
     <header>
-      <h1>{{ customer.name }}</h1>
+      <h1>{{ computer.name }}</h1>
     </header>
-    <p>{{ customer.description }}</p>
-    <p v-if="error">Couldn't fetch the customer details.</p>
+    <p>{{ computer.description }}</p>
+    <p v-if="error">Couldn't fetch the computer details.</p>
     <base-button @click="$router.go(-1)">
       Back
     </base-button>
@@ -16,15 +16,15 @@ import axios from "../scripts/axios-api";
 export default {
   data() {
     return {
-      customer: {},
+      computer: {},
       error: false,
     };
   },
   created() {
     axios
-      .get("customers/" + this.$route.params.customerId + "/")
+      .get("computers/" + this.$route.params.computerId + "/")
       .then((response) => {
-        this.customer = response.data;
+        this.computer = response.data;
       })
       .catch((error) => {
         this.error = error;

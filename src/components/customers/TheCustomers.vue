@@ -8,7 +8,7 @@
   <base-card>
     <header><h1>Customers</h1></header>
     <base-button @click="openAddCustomer()">Add Customer</base-button>
-    <table class="table table-hover table-bordered">
+    <base-table>
       <tr>
         <th class="orderable">Name</th>
         <th>Nets</th>
@@ -22,7 +22,7 @@
 
       <tr v-for="customer in customers" :key="customer.url">
         <td>
-          <router-link :to="'/customers/' + customer.id">{{
+          <router-link :to="'/customers/' + getId(customer.url)">{{
             customer.name
           }}</router-link>
         </td>
@@ -36,12 +36,13 @@
           <a href="#" @click="deleteCustomer(customer.url)">delete</a>
         </td>
       </tr>
-    </table>
+    </base-table>
   </base-card>
 </template>
 
 <script>
 import getAPI from "../scripts/axios-api";
+import getId from "../scripts/get-id-from-url";
 import AddCustomer from "./AddCustomer.vue";
 
 export default {
@@ -52,11 +53,10 @@ export default {
     return {
       customers: [],
       addCustomerDialogVisible: false,
-      showCustomerDetails: false,
-      customerUrl: "",
     };
   },
   methods: {
+    getId,
     deleteCustomer(url) {
       getAPI
         .delete(url)
