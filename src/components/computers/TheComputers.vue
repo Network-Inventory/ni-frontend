@@ -25,7 +25,9 @@
           }}</router-link>
         </td>
         <td>{{ computer.serialnumber }}</td>
-        <td>{{ computer.installation_date }}</td>
+        <td :class="dateColour(computer.installation_date)">
+          {{ computer.installation_date }}
+        </td>
         <td>{{ computer.category }}</td>
         <td>{{ computer.owner }}</td>
         <td>{{ computer.customer }}</td>
@@ -55,6 +57,16 @@ export default {
     };
   },
   methods: {
+    getId,
+    dateColour(inputDate) {
+      const currentDate = new Date();
+      const installation_date = new Date(inputDate);
+      if (installation_date < currentDate) {
+        return { "red-background": true };
+      } else {
+        return { "white-background": true };
+      }
+    },
     deleteComputer(url) {
       getAPI
         .delete(url)
@@ -67,7 +79,6 @@ export default {
           console.log(err);
         });
     },
-    getId,
   },
   created() {
     getAPI
@@ -81,3 +92,8 @@ export default {
   },
 };
 </script>
+<style scoped>
+.red-background {
+  background-color: red;
+}
+</style>
