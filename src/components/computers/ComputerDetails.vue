@@ -14,22 +14,28 @@
 <script>
 import axios from "../scripts/axios-api";
 export default {
+  props: ["computerId"],
   data() {
     return {
       computer: {},
       error: false,
     };
   },
+  methods: {
+    getComputer(computerId) {
+      axios
+        .get("computers/" + computerId + "/")
+        .then((response) => {
+          this.computer = response.data;
+        })
+        .catch((error) => {
+          this.error = error;
+          console.log(error);
+        });
+    },
+  },
   created() {
-    axios
-      .get("computers/" + this.$route.params.computerId + "/")
-      .then((response) => {
-        this.computer = response.data;
-      })
-      .catch((error) => {
-        this.error = error;
-        console.log(error);
-      });
+    this.getComputer(this.computerId);
   },
 };
 </script>

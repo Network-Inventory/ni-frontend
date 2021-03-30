@@ -14,22 +14,28 @@
 <script>
 import axios from "../scripts/axios-api";
 export default {
+  props: ["customerId"],
   data() {
     return {
       customer: {},
       error: false,
     };
   },
+  methods: {
+    getCustomer(customerId) {
+      axios
+        .get("customers/" + customerId + "/")
+        .then((response) => {
+          this.customer = response.data;
+        })
+        .catch((error) => {
+          this.error = error;
+          console.log(error);
+        });
+    },
+  },
   created() {
-    axios
-      .get("customers/" + this.$route.params.customerId + "/")
-      .then((response) => {
-        this.customer = response.data;
-      })
-      .catch((error) => {
-        this.error = error;
-        console.log(error);
-      });
+    this.getCustomer(this.customerId);
   },
 };
 </script>
