@@ -23,8 +23,7 @@ const router = createRouter({
     { path: "/computers/:computerId/", component: ComputerDetails },
   ],
   linkActiveClass: 'active',
-  srollBehaviour(from, to, savedPosition){
-    console.log(from, to);
+  srollBehaviour(_, _2, savedPosition){
     if (savedPosition){
       return savedPosition;
     }
