@@ -22,12 +22,13 @@ const router = createRouter({
     { path: "/computers/", component: TheComputers },
     { path: "/computers/:computerId/", component: ComputerDetails },
   ],
-  linkActiveClass: 'active',
-  srollBehaviour(_, _2, savedPosition){
-    if (savedPosition){
+  linkActiveClass: "active",
+  srollBehaviour(_, _2, savedPosition) {
+    if (savedPosition) {
       return savedPosition;
     }
-    return {left: 0, top: 0};
+    return { left: 0, top: 0 };
+  },
 });
 
 const app = createApp(App);
