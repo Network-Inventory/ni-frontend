@@ -24,7 +24,7 @@ export default {
   methods: {
     getComputer(computerId) {
       axios
-        .get("computers/" + computerId + "/")
+        .get("computers/" + computerId)
         .then((response) => {
           this.computer = response.data;
         })

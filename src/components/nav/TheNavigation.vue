@@ -3,10 +3,10 @@
     <nav>
       <ul>
         <li>
-          <router-link to="/">Home</router-link>
+          <router-link :to="{ name: 'customers' }">Home</router-link>
         </li>
         <li>
-          <router-link to="/computers/">All Computers</router-link>
+          <router-link :to="{ name: 'computers' }">All Computers</router-link>
         </li>
       </ul>
     </nav>
