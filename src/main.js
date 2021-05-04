@@ -17,15 +17,17 @@ import TheComputers from "./components/computers/TheComputers";
 const router = createRouter({
   history: createWebHistory(),
   routes: [
-    { path: "/", component: TheCustomers },
+    { name: "customers", path: "/", component: TheCustomers },
     {
-      path: "/customers/:customerId/",
+      name: "customer-details",
+      path: "/customers/:customerId",
       component: CustomerDetails,
       props: true,
     },
-    { path: "/computers/", component: TheComputers },
+    { name: "computers", path: "/computers", component: TheComputers },
     {
-      path: "/computers/:computerId/",
+      name: "computer-details",
+      path: "/computers/:computerId",
       component: ComputerDetails,
       props: true,
     },

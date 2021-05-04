@@ -24,7 +24,7 @@ export default {
   methods: {
     getCustomer(customerId) {
       axios
-        .get("customers/" + customerId + "/")
+        .get("customers/" + customerId)
         .then((response) => {
           this.customer = response.data;
         })
