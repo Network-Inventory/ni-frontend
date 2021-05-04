@@ -15,6 +15,7 @@ services:
       - NI_MODE=development
       - POSTGRES_DB=network_inventory
       - POSTGRES_PASSWORD=password
+      - NI_HOST
     depends_on:
       - db
     ports:
