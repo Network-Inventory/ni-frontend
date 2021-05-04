@@ -22,9 +22,13 @@
 
       <tr v-for="customer in customers" :key="customer.url">
         <td>
-          <router-link :to="'/customers/' + getId(customer.url)">{{
-            customer.name
-          }}</router-link>
+          <router-link
+            :to="{
+              name: 'customer-details',
+              params: { customerId: getId(customer.url) },
+            }"
+            >{{ customer.name }}</router-link
+          >
         </td>
         <td><a :href="customer.url">Nets</a></td>
         <td><a :href="customer.url">Computers</a></td>
@@ -82,7 +86,7 @@ export default {
   },
   created() {
     getAPI
-      .get("/customers/")
+      .get("/customers")
       .then((response) => {
         this.customers = response.data.results;
       })

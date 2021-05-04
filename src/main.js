@@ -17,10 +17,18 @@ import TheComputers from "./components/computers/TheComputers";
 const router = createRouter({
   history: createWebHistory(),
   routes: [
-    { path: "/", component: TheCustomers },
-    { path: "/customers/:customerId/", component: CustomerDetails },
-    { path: "/computers/", component: TheComputers },
-    { path: "/computers/:computerId/", component: ComputerDetails },
+    { name: "customers", path: "/", component: TheCustomers },
+    {
+      name: "customer-details",
+      path: "/customers/:customerId",
+      component: CustomerDetails,
+    },
+    { name: "computers", path: "/computers", component: TheComputers },
+    {
+      name: "computer-details",
+      path: "/computers/:computerId",
+      component: ComputerDetails,
+    },
   ],
   linkActiveClass: "active",
   srollBehaviour(_, _2, savedPosition) {

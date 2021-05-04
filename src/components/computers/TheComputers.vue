@@ -20,9 +20,13 @@
 
       <tr v-for="computer in computers" :key="computer.url">
         <td>
-          <router-link :to="'/computers/' + getId(computer.url)">{{
-            computer.name
-          }}</router-link>
+          <router-link
+            :to="{
+              name: 'computer-details',
+              params: { computerId: getId(computer.url) },
+            }"
+            >{{ computer.name }}</router-link
+          >
         </td>
         <td>{{ computer.serialnumber }}</td>
         <td>{{ computer.installation_date }}</td>
@@ -71,7 +75,7 @@ export default {
   },
   created() {
     getAPI
-      .get("/computers/")
+      .get("/computers")
       .then((response) => {
         this.computers = response.data.results;
       })

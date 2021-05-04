@@ -22,7 +22,7 @@ export default {
   },
   created() {
     axios
-      .get("customers/" + this.$route.params.customerId + "/")
+      .get("customers/" + this.$route.params.customerId)
       .then((response) => {
         this.customer = response.data;
       })
