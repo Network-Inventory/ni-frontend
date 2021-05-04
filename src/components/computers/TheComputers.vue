@@ -29,13 +29,13 @@
           {{ computer.installation_date }}
         </td>
         <td>{{ computer.category }}</td>
-        <td>{{ computer.owner }}</td>
-        <td>{{ computer.customer }}</td>
-        <td>{{ computer.manufacturer }}</td>
+        <td>{{ computer.owner.name }}</td>
+        <td>{{ computer.customer.name }}</td>
+        <td>{{ computer.manufacturer.name }}</td>
         <td>{{ computer.model }}</td>
         <td>{{ computer.location }}</td>
         <td>{{ computer.users }}</td>
-        <td>{{ computer.os }}</td>
+        <td>{{ computer.os.name }}</td>
         <td>{{ computer.host }}</td>
         <td>
           <a href="#" @click="deleteComputer(computer.url)">delete</a>
