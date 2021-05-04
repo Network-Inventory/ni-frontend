@@ -22,7 +22,7 @@ export default {
   },
   created() {
     axios
-      .get("computers/" + this.$route.params.computerId + "/")
+      .get("computers/" + this.$route.params.computerId)
       .then((response) => {
         this.computer = response.data;
       })

@@ -40,7 +40,7 @@ export default {
     addCustomer() {
       if (this.validateInput()) {
         getAPI
-          .post("/customers/", {
+          .post("/customers", {
             name: this.customerName,
             description: this.customerDescription,
           })
