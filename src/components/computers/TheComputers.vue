@@ -32,15 +32,15 @@
         <td :class="dateColour(computer.installation_date)">
           {{ computer.installation_date }}
         </td>
-        <td>{{ computer.category }}</td>
-        <td>{{ computer.owner.name }}</td>
-        <td>{{ computer.customer.name }}</td>
-        <td>{{ computer.manufacturer.name }}</td>
-        <td>{{ computer.model }}</td>
-        <td>{{ computer.location }}</td>
+        <td>{{ computer.category?.name }}</td>
+        <td>{{ computer.owner?.name }}</td>
+        <td>{{ computer.customer?.name }}</td>
+        <td>{{ computer.manufacturer?.name }}</td>
+        <td>{{ computer.model?.name }}</td>
+        <td>{{ computer.location?.name }}</td>
         <td>{{ computer.users }}</td>
-        <td>{{ computer.os.name }}</td>
-        <td>{{ computer.host }}</td>
+        <td>{{ computer.os?.name }}</td>
+        <td>{{ computer.host?.name }}</td>
         <td>
           <a href="#" @click="deleteComputer(computer.url)">delete</a>
         </td>
