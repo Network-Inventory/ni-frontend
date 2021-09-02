@@ -15,9 +15,6 @@ export default {
     TheNavigation,
     TheFooter,
   },
-  data() {
-    return {};
-  },
 };
 </script>
 
