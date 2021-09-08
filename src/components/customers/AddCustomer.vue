@@ -17,41 +17,46 @@
 </template>
 
 <script>
+import { ref } from "vue";
 import getAPI from "../scripts/axios-api";
 
 export default {
-  data() {
-    return {
-      customerName: "",
-      customerDescription: "",
-      errorMessage: false,
-    };
-  },
+  setup(_, context) {
+    const customerName = ref("");
+    const customerDescription = ref("");
+    const errorMessage = ref(false);
 
-  methods: {
-    validateInput() {
-      if (this.customerName === "") {
-        this.errorMessage = true;
+    function validateInput() {
+      if (customerName.value === "") {
+        errorMessage.value = true;
         return false;
       } else {
         return true;
       }
-    },
-    addCustomer() {
-      if (this.validateInput()) {
+    }
+
+    function addCustomer() {
+      if (validateInput()) {
         getAPI
           .post("/customers", {
-            name: this.customerName,
-            description: this.customerDescription,
+            name: customerName.value,
+            description: customerDescription.value,
           })
           .then((response) => {
-            this.$emit("ok", response.data);
+            context.emit("ok", response.data);
           })
           .catch((error) => {
             console.log(error);
           });
       }
-    },
+    }
+
+    return {
+      customerName,
+      customerDescription,
+      errorMessage,
+      addCustomer,
+    };
   },
 };
 </script>
