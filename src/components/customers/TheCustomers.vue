@@ -65,7 +65,7 @@ export default {
     const hasCustomers = computed(function() {
       //return isLoading.value && customers.value;
       //return isLoading.value;
-      return !isLoading.value && customers.value;
+      return !isLoading.value && customers.value.length > 0;
     });
 
     function deleteCustomer(url) {
