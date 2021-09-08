@@ -1,14 +1,17 @@
 <template>
-  <add-customer
+  <add-customer-dialog
     v-if="addCustomerDialogVisible"
     @ok="addCustomer"
     @cancel="closeDialog"
-  ></add-customer>
+  ></add-customer-dialog>
 
   <base-card>
     <header><h1>Customers</h1></header>
     <base-button @click="openAddCustomer()">Add Customer</base-button>
-    <base-table>
+    <div v-if="isLoading">
+      <base-spinner></base-spinner>
+    </div>
+    <base-table v-else-if="hasCustomers">
       <tr>
         <th class="orderable">Name</th>
         <th>Nets</th>
@@ -45,23 +48,27 @@
 </template>
 
 <script>
+import { ref, computed } from "vue";
 import getAPI from "../scripts/axios-api";
 import getId from "../scripts/get-id-from-url";
-import AddCustomer from "./AddCustomer.vue";
+import AddCustomerDialog from "./AddCustomer.vue";
 
 export default {
   components: {
-    AddCustomer,
+    AddCustomerDialog,
   },
-  data() {
-    return {
-      customers: [],
-      addCustomerDialogVisible: false,
-    };
-  },
-  methods: {
-    getId,
-    deleteCustomer(url) {
+  setup() {
+    const customers = ref([]);
+    const addCustomerDialogVisible = ref(false);
+    const isLoading = ref(true);
+
+    const hasCustomers = computed(function() {
+      //return isLoading.value && customers.value;
+      //return isLoading.value;
+      return !isLoading.value && customers.value;
+    });
+
+    function deleteCustomer(url) {
       getAPI
         .delete(url)
         .then(() => {
@@ -72,27 +79,40 @@ export default {
         .catch((err) => {
           console.log(err);
         });
-    },
-    openAddCustomer() {
-      this.addCustomerDialogVisible = true;
-    },
-    closeDialog() {
-      this.addCustomerDialogVisible = false;
-    },
-    addCustomer(customer) {
-      this.customers.unshift(customer);
-      this.addCustomerDialogVisible = false;
-    },
-  },
-  created() {
+    }
+
+    function openAddCustomer() {
+      addCustomerDialogVisible.value = true;
+    }
+    function closeDialog() {
+      addCustomerDialogVisible.value = false;
+    }
+    function addCustomer(customer) {
+      customers.value.unshift(customer);
+      addCustomerDialogVisible.value = false;
+    }
+
     getAPI
       .get("/customers")
       .then((response) => {
-        this.customers = response.data.results;
+        customers.value = response.data.results;
+        isLoading.value = false;
       })
       .catch((err) => {
         console.log(err);
       });
+
+    return {
+      customers,
+      addCustomerDialogVisible,
+      isLoading,
+      hasCustomers,
+      deleteCustomer,
+      openAddCustomer,
+      closeDialog,
+      addCustomer,
+      getId,
+    };
   },
 };
 </script>
