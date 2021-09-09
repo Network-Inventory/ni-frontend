@@ -12,30 +12,37 @@
 </template>
 
 <script>
+import { reactive } from "vue";
 import axios from "../scripts/axios-api";
+
 export default {
   props: ["customerId"],
-  data() {
-    return {
-      customer: {},
-      error: false,
-    };
-  },
-  methods: {
-    getCustomer(customerId) {
+  setup(props) {
+    const customer = reactive({
+      name: "",
+      description: "",
+    });
+    let error = null;
+
+    function getCustomer() {
       axios
-        .get("customers/" + customerId)
+        .get("customers/" + props.customerId)
         .then((response) => {
-          this.customer = response.data;
+          customer.name = response.data.name;
+          customer.description = response.data.description;
         })
-        .catch((error) => {
-          this.error = error;
+        .catch((axiosError) => {
+          error = axiosError;
           console.log(error);
         });
-    },
-  },
-  created() {
-    this.getCustomer(this.customerId);
+    }
+
+    getCustomer();
+
+    return {
+      customer,
+      error,
+    };
   },
 };
 </script>
