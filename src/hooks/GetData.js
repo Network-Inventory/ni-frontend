@@ -7,7 +7,7 @@ const useGetSingleObject = function() {
   const data = reactive({});
 
   const allGood = computed(function() {
-    return !error && data.response;
+    return !error && data.response && !isLoading.value;
   });
 
   function getData(endPoint, id) {
