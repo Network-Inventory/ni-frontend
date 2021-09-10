@@ -1,5 +1,8 @@
 <template>
   <base-card>
+    <div v-if="isLoading">
+      <base-spinner></base-spinner>
+    </div>
     <div v-if="allGood">
       <header>
         <h1>{{ data.response.name }}</h1>
