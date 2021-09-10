@@ -1,10 +1,12 @@
 <template>
   <base-card>
-    <header>
-      <h1>{{ customer.name }}</h1>
-    </header>
-    <p>{{ customer.description }}</p>
-    <p v-if="error">Couldn't fetch the customer details.</p>
+    <div v-if="allGood">
+      <header>
+        <h1>{{ data.response.name }}</h1>
+      </header>
+      <p>{{ data.response.description }}</p>
+    </div>
+    <p v-else>Couldn't fetch the customer details.</p>
     <base-button @click="$router.go(-1)">
       Back
     </base-button>
@@ -12,36 +14,23 @@
 </template>
 
 <script>
-import { reactive } from "vue";
-import axios from "../scripts/axios-api";
+import { toRefs } from "vue";
+import { useGetSingleObject } from "../../hooks/GetData";
 
 export default {
   props: ["customerId"],
   setup(props) {
-    const customer = reactive({
-      name: "",
-      description: "",
-    });
-    let error = null;
+    const customerId = toRefs(props);
+    console.log(customerId);
+    const { isLoading, data, allGood, getData } = useGetSingleObject();
 
-    function getCustomer() {
-      axios
-        .get("customers/" + props.customerId)
-        .then((response) => {
-          customer.name = response.data.name;
-          customer.description = response.data.description;
-        })
-        .catch((axiosError) => {
-          error = axiosError;
-          console.log(error);
-        });
-    }
-
-    getCustomer();
+    getData("customers", 15);
 
     return {
-      customer,
-      error,
+      isLoading,
+      data,
+      allGood,
+      getData,
     };
   },
 };
