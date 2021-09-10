@@ -17,17 +17,15 @@
 </template>
 
 <script>
-import { toRefs } from "vue";
+//import { toRefs } from "vue";
 import { useGetSingleObject } from "../../hooks/GetData";
 
 export default {
   props: ["customerId"],
   setup(props) {
-    const customerId = toRefs(props);
-    console.log(customerId);
     const { isLoading, data, allGood, getData } = useGetSingleObject();
 
-    getData("customers", 15);
+    getData("customers", props.customerId);
 
     return {
       isLoading,
