@@ -17,7 +17,6 @@
 </template>
 
 <script>
-//import { toRefs } from "vue";
 import { useGetSingleObject } from "../../hooks/GetData";
 
 export default {
