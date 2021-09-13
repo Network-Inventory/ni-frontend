@@ -46,7 +46,7 @@ const useGetObjects = function(endPoint) {
     axios
       .get(endPoint)
       .then((response) => {
-        data.response = response.data;
+        data.response = response.data.results;
       })
       .catch((axiosError) => {
         error = axiosError;
