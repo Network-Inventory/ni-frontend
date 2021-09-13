@@ -1,10 +1,10 @@
 <template>
   <base-card>
     <header><h1>Computers</h1></header>
-    <table>
     <div v-if="isLoading">
       <base-spinner></base-spinner>
     </div>
+    <base-table v-if="allGood">
       <tr>
         <th class="orderable">Name</th>
         <th>Serialnumber</th>
@@ -48,7 +48,9 @@
           <a href="#" @click="deleteComputer(computer.url)">delete</a>
         </td>
       </tr>
-    </table>
+    </base-table>
+
+    <p v-else>Couldn't fetch the computer details.</p>
   </base-card>
 </template>
 
