@@ -1,14 +1,17 @@
 <template>
-  <add-customer
+  <add-customer-dialog
     v-if="addCustomerDialogVisible"
     @ok="addCustomer"
     @cancel="closeDialog"
-  ></add-customer>
+  ></add-customer-dialog>
 
   <base-card>
     <header><h1>Customers</h1></header>
     <base-button @click="openAddCustomer()">Add Customer</base-button>
-    <base-table>
+    <div v-if="isLoading">
+      <base-spinner></base-spinner>
+    </div>
+    <base-table v-if="allGood">
       <tr>
         <th class="orderable">Name</th>
         <th>Nets</th>
@@ -20,7 +23,7 @@
         <th>Actions</th>
       </tr>
 
-      <tr v-for="customer in customers" :key="customer.url">
+      <tr v-for="customer in data.response" :key="customer.url">
         <td>
           <router-link
             :to="{
@@ -41,58 +44,61 @@
         </td>
       </tr>
     </base-table>
+
+    <p v-else>Couldn't fetch the computer details.</p>
   </base-card>
 </template>
 
 <script>
+import { ref } from "vue";
 import getAPI from "../scripts/axios-api";
+import { useGetObjects } from "../../hooks/GetData";
 import getId from "../scripts/get-id-from-url";
-import AddCustomer from "./AddCustomer.vue";
+import AddCustomerDialog from "./AddCustomer.vue";
 
 export default {
   components: {
-    AddCustomer,
+    AddCustomerDialog,
   },
-  data() {
-    return {
-      customers: [],
-      addCustomerDialogVisible: false,
-    };
-  },
-  methods: {
-    getId,
-    deleteCustomer(url) {
+  setup() {
+    const addCustomerDialogVisible = ref(false);
+
+    const { isLoading, data, allGood, getData } = useGetObjects("/customers");
+
+    function deleteCustomer(url) {
       getAPI
         .delete(url)
         .then(() => {
-          this.customers = this.customers.filter(
-            (customer) => customer.url !== url
-          );
+          getData();
         })
         .catch((err) => {
           console.log(err);
         });
-    },
-    openAddCustomer() {
-      this.addCustomerDialogVisible = true;
-    },
-    closeDialog() {
-      this.addCustomerDialogVisible = false;
-    },
-    addCustomer(customer) {
-      this.customers.unshift(customer);
-      this.addCustomerDialogVisible = false;
-    },
-  },
-  created() {
-    getAPI
-      .get("/customers")
-      .then((response) => {
-        this.customers = response.data.results;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    }
+
+    function openAddCustomer() {
+      addCustomerDialogVisible.value = true;
+    }
+    function closeDialog() {
+      addCustomerDialogVisible.value = false;
+    }
+    function addCustomer() {
+      getData();
+      addCustomerDialogVisible.value = false;
+    }
+    getData();
+
+    return {
+      addCustomerDialogVisible,
+      isLoading,
+      deleteCustomer,
+      openAddCustomer,
+      closeDialog,
+      addCustomer,
+      getId,
+      allGood,
+      data,
+    };
   },
 };
 </script>

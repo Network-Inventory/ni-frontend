@@ -1,7 +1,10 @@
 <template>
   <base-card>
     <header><h1>Computers</h1></header>
-    <table>
+    <div v-if="isLoading">
+      <base-spinner></base-spinner>
+    </div>
+    <base-table v-if="allGood">
       <tr>
         <th class="orderable">Name</th>
         <th>Serialnumber</th>
@@ -18,7 +21,7 @@
         <th>Actions</th>
       </tr>
 
-      <tr v-for="computer in computers" :key="computer.url">
+      <tr v-for="computer in data.response" :key="computer.url">
         <td>
           <router-link
             :to="{
@@ -45,24 +48,22 @@
           <a href="#" @click="deleteComputer(computer.url)">delete</a>
         </td>
       </tr>
-    </table>
+    </base-table>
+
+    <p v-else>Couldn't fetch the computer details.</p>
   </base-card>
 </template>
 
 <script>
 import getAPI from "../scripts/axios-api";
+import { useGetObjects } from "../../hooks/GetData";
 import getId from "../scripts/get-id-from-url";
 
 export default {
-  components: {},
-  data() {
-    return {
-      computers: [],
-    };
-  },
-  methods: {
-    getId,
-    dateColour(inputDate) {
+  setup() {
+    const { isLoading, data, allGood, getData } = useGetObjects("/computers");
+
+    function dateColour(inputDate) {
       const currentDate = new Date();
       const installation_date = new Date(inputDate);
       if (installation_date < currentDate) {
@@ -70,29 +71,26 @@ export default {
       } else {
         return { "white-background": true };
       }
-    },
-    deleteComputer(url) {
+    }
+    function deleteComputer(url) {
       getAPI
         .delete(url)
         .then(() => {
-          this.computers = this.computers.filter(
-            (computer) => computer.url !== url
-          );
+          getData();
         })
         .catch((err) => {
           console.log(err);
         });
-    },
-  },
-  created() {
-    getAPI
-      .get("/computers")
-      .then((response) => {
-        this.computers = response.data.results;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    }
+    getData();
+    return {
+      dateColour,
+      deleteComputer,
+      getId,
+      isLoading,
+      allGood,
+      data,
+    };
   },
 };
 </script>
