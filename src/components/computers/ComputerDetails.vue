@@ -1,10 +1,10 @@
 <template>
   <base-card>
     <header>
-      <h1>{{ computer.name }}</h1>
+      <h1>{{ data.response?.name }}</h1>
     </header>
-    <p>{{ computer.description }}</p>
-    <p v-if="error">Couldn't fetch the computer details.</p>
+    <p>{{ data.response?.description }}</p>
+    <p v-if="!allGood">Couldn't fetch the computer details.</p>
     <base-button @click="$router.go(-1)">
       Back
     </base-button>
@@ -12,30 +12,17 @@
 </template>
 
 <script>
-import axios from "../scripts/axios-api";
+import { useGetSingleObject } from "../../hooks/GetData";
 export default {
   props: ["computerId"],
-  data() {
+  data(props) {
+    const { isLoading, data, allGood, getData } = useGetSingleObject();
+    console.log(isLoading);
+    getData("computers", props.computerId);
     return {
-      computer: {},
-      error: false,
+      data,
+      allGood,
     };
-  },
-  methods: {
-    getComputer(computerId) {
-      axios
-        .get("computers/" + computerId)
-        .then((response) => {
-          this.computer = response.data;
-        })
-        .catch((error) => {
-          this.error = error;
-          console.log(error);
-        });
-    },
-  },
-  created() {
-    this.getComputer(this.computerId);
   },
 };
 </script>
