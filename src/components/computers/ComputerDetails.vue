@@ -22,7 +22,6 @@ export default {
   props: ["computerId"],
   data(props) {
     const { isLoading, data, allGood, getData } = useGetSingleObject();
-    console.log(isLoading);
     getData("computers", props.computerId);
     return {
       isLoading,
