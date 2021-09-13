@@ -2,6 +2,9 @@
   <base-card>
     <header><h1>Computers</h1></header>
     <table>
+    <div v-if="isLoading">
+      <base-spinner></base-spinner>
+    </div>
       <tr>
         <th class="orderable">Name</th>
         <th>Serialnumber</th>
@@ -57,7 +60,6 @@ import getId from "../scripts/get-id-from-url";
 export default {
   setup() {
     const { isLoading, data, allGood, getData } = useGetObjects("/computers");
-    console.log(isLoading, allGood);
 
     function dateColour(inputDate) {
       const currentDate = new Date();
@@ -83,6 +85,8 @@ export default {
       dateColour,
       deleteComputer,
       getId,
+      isLoading,
+      allGood,
       data,
     };
   },
