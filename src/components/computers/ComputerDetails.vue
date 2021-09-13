@@ -1,10 +1,15 @@
 <template>
   <base-card>
-    <header>
-      <h1>{{ data.response?.name }}</h1>
-    </header>
-    <p>{{ data.response?.description }}</p>
-    <p v-if="!allGood">Couldn't fetch the computer details.</p>
+    <div v-if="isLoading">
+      <base-spinner></base-spinner>
+    </div>
+    <div v-if="allGood">
+      <header>
+        <h1>{{ data.response.name }}</h1>
+      </header>
+      <p>{{ data.response.description }}</p>
+    </div>
+    <p v-else>Couldn't fetch the computer details.</p>
     <base-button @click="$router.go(-1)">
       Back
     </base-button>
@@ -20,6 +25,7 @@ export default {
     console.log(isLoading);
     getData("computers", props.computerId);
     return {
+      isLoading,
       data,
       allGood,
     };
