@@ -51,18 +51,15 @@
 
 <script>
 import getAPI from "../scripts/axios-api";
+//import { useGetObjects } from "../../hooks/GetData";
 import getId from "../scripts/get-id-from-url";
+import { ref } from "vue";
 
 export default {
-  components: {},
-  data() {
-    return {
-      computers: [],
-    };
-  },
-  methods: {
-    getId,
-    dateColour(inputDate) {
+  setup() {
+    const computers = ref([]);
+
+    function dateColour(inputDate) {
       const currentDate = new Date();
       const installation_date = new Date(inputDate);
       if (installation_date < currentDate) {
@@ -70,29 +67,34 @@ export default {
       } else {
         return { "white-background": true };
       }
-    },
-    deleteComputer(url) {
+    }
+    function deleteComputer(url) {
       getAPI
         .delete(url)
         .then(() => {
-          this.computers = this.computers.filter(
+          computers.value = computers.value.filter(
             (computer) => computer.url !== url
           );
         })
         .catch((err) => {
           console.log(err);
         });
-    },
-  },
-  created() {
+    }
     getAPI
       .get("/computers")
       .then((response) => {
-        this.computers = response.data.results;
+        computers.value = response.data.results;
       })
       .catch((err) => {
         console.log(err);
       });
+
+    return {
+      computers,
+      dateColour,
+      deleteComputer,
+      getId,
+    };
   },
 };
 </script>
