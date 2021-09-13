@@ -33,4 +33,36 @@ const useGetSingleObject = function() {
   };
 };
 
-export { useGetSingleObject };
+const useGetObjects = function(endPoint) {
+  let error = false;
+  const isLoading = ref(true);
+  const data = reactive({});
+
+  const allGood = computed(function() {
+    return !error && data.response && !isLoading.value;
+  });
+
+  function getData() {
+    axios
+      .get(endPoint)
+      .then((response) => {
+        data.response = response.data;
+      })
+      .catch((axiosError) => {
+        error = axiosError;
+        console.log(error);
+      })
+      .finally(() => {
+        isLoading.value = false;
+      });
+  }
+
+  return {
+    isLoading,
+    data,
+    allGood,
+    getData,
+  };
+};
+
+export { useGetSingleObject, useGetObjects };
