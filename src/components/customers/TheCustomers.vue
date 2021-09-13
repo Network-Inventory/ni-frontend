@@ -51,9 +51,9 @@
 
 <script>
 import { ref } from "vue";
-import getAPI from "../scripts/axios-api";
+import getAPI from "../../scripts/axios-api";
 import { useGetObjects } from "../../hooks/GetData";
-import getId from "../scripts/get-id-from-url";
+import getId from "../../scripts/get-id-from-url";
 import AddCustomerDialog from "./AddCustomer.vue";
 
 export default {

@@ -18,7 +18,7 @@
 
 <script>
 import { ref } from "vue";
-import getAPI from "../scripts/axios-api";
+import getAPI from "../../scripts/axios-api";
 
 export default {
   setup(_, context) {

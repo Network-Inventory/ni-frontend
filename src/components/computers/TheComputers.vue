@@ -55,9 +55,9 @@
 </template>
 
 <script>
-import getAPI from "../scripts/axios-api";
+import getAPI from "../../scripts/axios-api";
 import { useGetObjects } from "../../hooks/GetData";
-import getId from "../scripts/get-id-from-url";
+import getId from "../../scripts/get-id-from-url";
 
 export default {
   setup() {

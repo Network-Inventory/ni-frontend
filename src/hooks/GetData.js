@@ -1,5 +1,5 @@
 import { ref, reactive, computed } from "vue";
-import axios from "../components/scripts/axios-api";
+import axios from "../scripts/axios-api";
 
 const useGetSingleObject = function() {
   let error = false;

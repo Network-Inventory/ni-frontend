@@ -2,10 +2,10 @@
 
 import { createRouter, createWebHistory } from "vue-router";
 
-import TheCustomers from "./components/customers/TheCustomers";
-import CustomerDetails from "./components/customers/CustomerDetails";
-import ComputerDetails from "./components/computers/ComputerDetails";
-import TheComputers from "./components/computers/TheComputers";
+import TheCustomers from "../components/customers/TheCustomers";
+import CustomerDetails from "../components/customers/CustomerDetails";
+import ComputerDetails from "../components/computers/ComputerDetails";
+import TheComputers from "../components/computers/TheComputers";
 
 const router = createRouter({
   history: createWebHistory(),
