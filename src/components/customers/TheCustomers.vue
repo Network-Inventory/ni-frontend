@@ -44,6 +44,8 @@
         </td>
       </tr>
     </base-table>
+
+    <p v-else>Couldn't fetch the computer details.</p>
   </base-card>
 </template>
 
