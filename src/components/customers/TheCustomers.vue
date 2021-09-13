@@ -11,7 +11,7 @@
     <div v-if="isLoading">
       <base-spinner></base-spinner>
     </div>
-    <base-table v-else-if="allGood">
+    <base-table v-if="allGood">
       <tr>
         <th class="orderable">Name</th>
         <th>Nets</th>
