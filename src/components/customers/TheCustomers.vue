@@ -11,7 +11,7 @@
     <div v-if="isLoading">
       <base-spinner></base-spinner>
     </div>
-    <base-table v-else-if="hasCustomers">
+    <base-table v-else-if="allGood">
       <tr>
         <th class="orderable">Name</th>
         <th>Nets</th>
@@ -23,7 +23,7 @@
         <th>Actions</th>
       </tr>
 
-      <tr v-for="customer in customers" :key="customer.url">
+      <tr v-for="customer in data.response" :key="customer.url">
         <td>
           <router-link
             :to="{
@@ -48,8 +48,9 @@
 </template>
 
 <script>
-import { ref, computed } from "vue";
+import { ref } from "vue";
 import getAPI from "../scripts/axios-api";
+import { useGetObjects } from "../../hooks/GetData";
 import getId from "../scripts/get-id-from-url";
 import AddCustomerDialog from "./AddCustomer.vue";
 
@@ -58,23 +59,15 @@ export default {
     AddCustomerDialog,
   },
   setup() {
-    const customers = ref([]);
     const addCustomerDialogVisible = ref(false);
-    const isLoading = ref(true);
 
-    const hasCustomers = computed(function() {
-      //return isLoading.value && customers.value;
-      //return isLoading.value;
-      return !isLoading.value && customers.value.length > 0;
-    });
+    const { isLoading, data, allGood, getData } = useGetObjects("/customers");
 
     function deleteCustomer(url) {
       getAPI
         .delete(url)
         .then(() => {
-          this.customers = this.customers.filter(
-            (customer) => customer.url !== url
-          );
+          getData();
         })
         .catch((err) => {
           console.log(err);
@@ -87,31 +80,22 @@ export default {
     function closeDialog() {
       addCustomerDialogVisible.value = false;
     }
-    function addCustomer(customer) {
-      customers.value.unshift(customer);
+    function addCustomer() {
+      getData();
       addCustomerDialogVisible.value = false;
     }
-
-    getAPI
-      .get("/customers")
-      .then((response) => {
-        customers.value = response.data.results;
-        isLoading.value = false;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    getData();
 
     return {
-      customers,
       addCustomerDialogVisible,
       isLoading,
-      hasCustomers,
       deleteCustomer,
       openAddCustomer,
       closeDialog,
       addCustomer,
       getId,
+      allGood,
+      data,
     };
   },
 };
