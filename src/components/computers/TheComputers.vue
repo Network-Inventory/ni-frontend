@@ -18,7 +18,7 @@
         <th>Actions</th>
       </tr>
 
-      <tr v-for="computer in computers" :key="computer.url">
+      <tr v-for="computer in data.response" :key="computer.url">
         <td>
           <router-link
             :to="{
@@ -51,13 +51,13 @@
 
 <script>
 import getAPI from "../scripts/axios-api";
-//import { useGetObjects } from "../../hooks/GetData";
+import { useGetObjects } from "../../hooks/GetData";
 import getId from "../scripts/get-id-from-url";
-import { ref } from "vue";
 
 export default {
   setup() {
-    const computers = ref([]);
+    const { isLoading, data, allGood, getData } = useGetObjects("/computers");
+    console.log(isLoading, allGood);
 
     function dateColour(inputDate) {
       const currentDate = new Date();
@@ -72,28 +72,18 @@ export default {
       getAPI
         .delete(url)
         .then(() => {
-          computers.value = computers.value.filter(
-            (computer) => computer.url !== url
-          );
+          getData();
         })
         .catch((err) => {
           console.log(err);
         });
     }
-    getAPI
-      .get("/computers")
-      .then((response) => {
-        computers.value = response.data.results;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
+    getData();
     return {
-      computers,
       dateColour,
       deleteComputer,
       getId,
+      data,
     };
   },
 };
