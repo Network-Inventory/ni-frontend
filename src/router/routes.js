@@ -1,7 +1,9 @@
-const TheCustomers = () => import("../components/customers/TheCustomers");
-const CustomerDetails = () => import("../components/customers/CustomerDetails");
-const ComputerDetails = () => import("../components/computers/ComputerDetails");
-const TheComputers = () => import("../components/computers/TheComputers");
+const TheCustomers = () => import("../components/customers/TheCustomers.vue");
+const CustomerDetails = () =>
+  import("../components/customers/CustomerDetails.vue");
+const ComputerDetails = () =>
+  import("../components/computers/ComputerDetails.vue");
+const TheComputers = () => import("../components/computers/TheComputers.vue");
 
 const routes = [
   {
