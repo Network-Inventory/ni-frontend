@@ -18,7 +18,17 @@ const routes = [
     component: CustomerDetails,
     props: true,
   },
-  { name: "computers", path: "/computers", component: TheComputers },
+  {
+    path: "/",
+    component: MainLayout,
+    children: [{ path: "", component: TheCustomers }],
+  },
+  {
+    name: "computers",
+    path: "/computers",
+    component: MainLayout,
+    children: [{ path: "", component: TheComputers }],
+  },
   {
     name: "computer-details",
     path: "/computers/:computerId",
