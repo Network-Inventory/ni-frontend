@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
 cd /app
 npm install
-npm run serve
+npm install -g @quasar/cli
+npm run dev
