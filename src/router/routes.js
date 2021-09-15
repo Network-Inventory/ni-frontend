@@ -1,3 +1,4 @@
+const MainLayout = () => import("layouts/MainLayout.vue");
 const TheCustomers = () => import("../components/customers/TheCustomers.vue");
 const CustomerDetails = () =>
   import("../components/customers/CustomerDetails.vue");
@@ -8,10 +9,9 @@ const TheComputers = () => import("../components/computers/TheComputers.vue");
 const routes = [
   {
     path: "/",
-    component: () => import("layouts/MainLayout.vue"),
-    children: [{ path: "", component: () => import("pages/Index.vue") }],
+    component: MainLayout,
+    children: [{ path: "", component: TheCustomers }],
   },
-  { name: "customers", path: "/customers", component: TheCustomers },
   {
     name: "customer-details",
     path: "/customers/:customerId",
