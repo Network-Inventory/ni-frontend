@@ -1,20 +1,26 @@
-# ni-frontend
+# Network Inventory (ni-frontend)
 
-This is the frontend for the Network Inventory. It is written in VueJS and
-requires the [ni-backend](https://github.com/Network-Inventory/ni-backend) in
-order to fully work.
+A tool to manage the data about customer computers and networks.
 
-The application expects to reach the API always on the same url as it got
-served.
-However always on port 80 or 443.
-Means if you server the VueJS from http://localhost:8080 e.g. with the
-development server it will still look for the API at http://localhost.
-
-## development
-
-Before you begin make sure that you have Docker and docker-compose installed.
-Afterwards just run:
-
+## Install the dependencies
+```bash
+npm install
 ```
-docker-compose up --build
+
+### Start the app in development mode (hot-code reloading, error reporting, etc.)
+```bash
+quasar dev
 ```
+
+### Lint the files
+```bash
+npm run lint
+```
+
+### Build the app for production
+```bash
+quasar build
+```
+
+### Customize the configuration
+See [Configuring quasar.conf.js](https://v2.quasar.dev/quasar-cli/quasar-conf-js).
