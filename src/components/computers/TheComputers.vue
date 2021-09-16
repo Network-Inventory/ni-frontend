@@ -4,18 +4,34 @@
   </div>
   <div class="q-pa-md" v-if="allGood">
     <q-table
+      @row-click="openDetails"
       title="Computers"
       :rows="data.response"
       :columns="columns"
-      row-key="url"
-    />
+      row-key="name"
+    >
+      <template v-slot:body-cell-actions="props">
+        <q-td :props="props">
+          <div>
+            <q-btn
+              flat
+              round
+              color="red"
+              icon="delete"
+              @click.stop="deleteComputer(props.row.url)"
+            />
+          </div>
+        </q-td>
+      </template>
+    </q-table>
   </div>
 
   <p v-else>Couldn't fetch the computer details.</p>
 </template>
 
 <script>
-import { computed } from "vue";
+import { useRouter } from "vue-router";
+
 import getAPI from "../../scripts/axios-api";
 import { useGetObjects } from "../../hooks/GetData";
 import getId from "../../scripts/get-id-from-url";
@@ -28,80 +44,87 @@ export default {
         required: true,
         label: "Name",
         align: "left",
-        field: row => row.name,
-        format: val => `${val}`,
+        field: "name",
         sortable: true
       },
       {
-        name: "Serialnumber",
+        name: "serialnumber",
         align: "center",
         label: "Serialnumber",
         field: "serialnumber",
         sortable: true
       },
       {
-        name: "Installation date",
+        name: "installation-date",
         label: "Installation date",
         field: "installation_date",
         sortable: true
       },
       {
-        name: "Category",
+        name: "category",
         label: "Category",
         field: row => row.category?.name,
         sortable: true
       },
       {
-        name: "Owner",
+        name: "owner",
         label: "Owner",
         field: row => row.owner?.name,
         sortable: true
       },
       {
-        name: "Manufacturer",
+        name: "manufacturer",
         label: "Manufacturer",
         field: row => row.manufacturer?.name,
         sortable: true
       },
       {
-        name: "Model",
+        name: "model",
         label: "Model",
         field: row => row.model?.name,
         sortable: true
       },
       {
-        name: "Location",
+        name: "location",
         label: "Location",
         field: row => row.location?.name,
         sortable: true
       },
       {
-        name: "User",
+        name: "user",
         label: "User",
         field: row => row.user?.name,
         sortable: true
       },
       {
-        name: "OS",
+        name: "os",
         label: "OS",
         field: row => row.os?.name,
         sortable: true
       },
       {
-        name: "Host",
+        name: "host",
         label: "Host",
         field: row => row.host?.name,
         sortable: true
       },
       {
-        name: "Actions",
+        name: "actions",
         label: "Actions",
-        field: "actions",
         sortable: true
       }
     ];
 
+    const router = useRouter();
     const { isLoading, data, allGood, getData } = useGetObjects("/computers");
+
+    function openDetails(_, row) {
+      const id = getId(row.url);
+      router.push({
+        name: "computer-details",
+        params: { computerId: id }
+      });
+    }
 
     function dateColour(inputDate) {
       const currentDate = new Date();
@@ -131,7 +154,8 @@ export default {
       isLoading,
       allGood,
       data,
-      columns
+      columns,
+      openDetails
     };
   }
 };
