@@ -1,38 +1,30 @@
-"use strict";
+import { route } from 'quasar/wrappers'
+import { createRouter, createMemoryHistory, createWebHistory, createWebHashHistory } from 'vue-router'
+import routes from './routes'
 
-import { createRouter, createWebHistory } from "vue-router";
+/*
+ * If not building with SSR mode, you can
+ * directly export the Router instantiation;
+ *
+ * The function below can be async too; either use
+ * async/await or return a Promise which resolves
+ * with the Router instance.
+ */
 
-const TheCustomers = () => import("../components/customers/TheCustomers");
-const CustomerDetails = () => import("../components/customers/CustomerDetails");
-const ComputerDetails = () => import("../components/computers/ComputerDetails");
-const TheComputers = () => import("../components/computers/TheComputers");
+export default route(function (/* { store, ssrContext } */) {
+  const createHistory = process.env.SERVER
+    ? createMemoryHistory
+    : (process.env.VUE_ROUTER_MODE === 'history' ? createWebHistory : createWebHashHistory)
 
-const router = createRouter({
-  history: createWebHistory(),
-  routes: [
-    { name: "customers", path: "/", component: TheCustomers },
-    {
-      name: "customer-details",
-      path: "/customers/:customerId",
-      component: CustomerDetails,
-      props: true,
-    },
-    { name: "computers", path: "/computers", component: TheComputers },
-    {
-      name: "computer-details",
-      path: "/computers/:computerId",
-      component: ComputerDetails,
-      props: true,
-    },
-    { path: "/:notFound(.*)", component: TheCustomers },
-  ],
-  linkActiveClass: "active",
-  srollBehaviour(_, _2, savedPosition) {
-    if (savedPosition) {
-      return savedPosition;
-    }
-    return { left: 0, top: 0 };
-  },
-});
+  const Router = createRouter({
+    scrollBehavior: () => ({ left: 0, top: 0 }),
+    routes,
 
-export default router;
+    // Leave this as is and make changes in quasar.conf.js instead!
+    // quasar.conf.js -> build -> vueRouterMode
+    // quasar.conf.js -> build -> publicPath
+    history: createHistory(process.env.MODE === 'ssr' ? void 0 : process.env.VUE_ROUTER_BASE)
+  })
+
+  return Router
+})
