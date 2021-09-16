@@ -10,51 +10,6 @@
       row-key="url"
     />
   </div>
-  <base-table v-if="allGood">
-    <tr>
-      <th class="orderable">Name</th>
-      <th>Serialnumber</th>
-      <th>Installation Date</th>
-      <th>Category</th>
-      <th>Owner</th>
-      <th>Customer</th>
-      <th>Manufacturer</th>
-      <th>Model</th>
-      <th>Location</th>
-      <th>Users</th>
-      <th>OS</th>
-      <th>Host</th>
-      <th>Actions</th>
-    </tr>
-
-    <tr v-for="computer in data.response" :key="computer.url">
-      <td>
-        <router-link
-          :to="{
-            name: 'computer-details',
-            params: { computerId: getId(computer.url) }
-          }"
-          >{{ computer.name }}</router-link
-        >
-      </td>
-      <td>{{ computer.serialnumber }}</td>
-      <td :class="dateColour(computer.installation_date)">
-        {{ computer.installation_date }}
-      </td>
-      <td>{{ computer.category?.name }}</td>
-      <td>{{ computer.owner?.name }}</td>
-      <td>{{ computer.customer?.name }}</td>
-      <td>{{ computer.manufacturer?.name }}</td>
-      <td>{{ computer.model?.name }}</td>
-      <td>{{ computer.location?.name }}</td>
-      <td>{{ computer.users }}</td>
-      <td>{{ computer.os?.name }}</td>
-      <td>{{ computer.host?.name }}</td>
-      <td>
-        <a href="#" @click="deleteComputer(computer.url)">delete</a>
-      </td>
-    </tr>
-  </base-table>
 
   <p v-else>Couldn't fetch the computer details.</p>
 </template>
