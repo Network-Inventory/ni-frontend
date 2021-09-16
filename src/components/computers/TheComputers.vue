@@ -93,55 +93,55 @@ export default {
       {
         name: "Category",
         label: "Category",
-        field: "category",
+        field: row => row.category?.name,
         sortable: true
       },
       {
         name: "Owner",
         label: "Owner",
-        field: "owner",
+        field: row => row.owner?.name,
         sortable: true
       },
       {
         name: "Manufacturer",
         label: "Manufacturer",
-        field: "manufacturer",
+        field: row => row.manufacturer?.name,
         sortable: true
       },
       {
         name: "Model",
         label: "Model",
-        field: "model",
+        field: row => row.model?.name,
         sortable: true
       },
       {
         name: "Location",
         label: "Location",
-        field: "location",
+        field: row => row.location?.name,
         sortable: true
       },
       {
-        name: "Users",
-        label: "Users",
-        field: "users",
-        sortable: true
-      },
-      {
-        name: "",
-        label: "",
-        field: "",
+        name: "User",
+        label: "User",
+        field: row => row.user?.name,
         sortable: true
       },
       {
         name: "OS",
         label: "OS",
-        field: "os",
+        field: row => row.os?.name,
         sortable: true
       },
       {
         name: "Host",
         label: "Host",
-        field: "host",
+        field: row => row.host?.name,
+        sortable: true
+      },
+      {
+        name: "Actions",
+        label: "Actions",
+        field: "actions",
         sortable: true
       }
     ];
@@ -171,16 +171,16 @@ export default {
           console.log(err);
         });
     }
-    function createRows(objectToFlatten) {
-      const rows = [];
-      for (let index = 0; index < objectToFlatten.length; index++) {
-        const element = array[index];
-        rows.push(element.values);
-      }
-      console.log(rows[0]);
-    }
+    // function createRows(objectToFlatten) {
+    //   const rows = [];
+    //   for (let index = 0; index < objectToFlatten.length; index++) {
+    //     const element = objectToFlatten[index];
+    //     rows.push(element.values);
+    //   }
+    //   console.log(rows);
+    // }
     getData();
-    createRows(dataResponse);
+    //createRows(dataResponse);
     return {
       dateColour,
       deleteComputer,
