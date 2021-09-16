@@ -148,10 +148,6 @@ export default {
 
     const { isLoading, data, allGood, getData } = useGetObjects("/computers");
 
-    const dataResponse = computed(function() {
-      return data.response;
-    });
-
     function dateColour(inputDate) {
       const currentDate = new Date();
       const installation_date = new Date(inputDate);
@@ -171,16 +167,8 @@ export default {
           console.log(err);
         });
     }
-    // function createRows(objectToFlatten) {
-    //   const rows = [];
-    //   for (let index = 0; index < objectToFlatten.length; index++) {
-    //     const element = objectToFlatten[index];
-    //     rows.push(element.values);
-    //   }
-    //   console.log(rows);
-    // }
+
     getData();
-    //createRows(dataResponse);
     return {
       dateColour,
       deleteComputer,
