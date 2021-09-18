@@ -19,11 +19,6 @@ const routes = [
     props: true,
   },
   {
-    path: "/",
-    component: MainLayout,
-    children: [{ path: "", component: TheCustomers }],
-  },
-  {
     name: "computers",
     path: "/computers",
     component: MainLayout,
@@ -35,9 +30,6 @@ const routes = [
     component: ComputerDetails,
     props: true,
   },
-  { path: "/:notFound(.*)", component: TheCustomers },
-  // Always leave this as last one,
-  // but you can also remove it
   {
     path: "/:catchAll(.*)*",
     component: () => import("pages/Error404.vue"),
