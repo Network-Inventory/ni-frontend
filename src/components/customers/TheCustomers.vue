@@ -1,16 +1,10 @@
 <template>
-  <add-customer-dialog
-    v-if="addCustomerDialogVisible"
-    @ok="addCustomer"
-    @cancel="closeDialog"
-  ></add-customer-dialog>
-
   <div class="q-pa-md" v-if="allGood">
     <div v-if="isLoading">
       <base-spinner></base-spinner>
     </div>
     <div class="q-pa-md q-gutter-sm">
-      <q-btn color="primary" label="Add Customer" @click="openAddCustomer()" />
+      <q-btn label="Add Customer" color="primary" @click="showDialog" />
     </div>
 
     <q-table
@@ -47,51 +41,51 @@ const columns = [
     label: "Name",
     align: "left",
     field: "name",
-    sortable: true
+    sortable: true,
   },
   {
     name: "nets",
     label: "Nets",
     field: "nets",
-    sortable: true
+    sortable: true,
   },
   {
     name: "computers",
     label: "Computers",
     field: "computers",
-    sortable: true
+    sortable: true,
   },
   {
     name: "devices",
     label: "Devices",
     field: "devices",
-    sortable: true
+    sortable: true,
   },
   {
     name: "backups",
     label: "Backups",
     field: "backups",
-    sortable: true
+    sortable: true,
   },
   {
     name: "licenses",
     label: "Licenses",
     field: "licenses",
-    sortable: true
+    sortable: true,
   },
   {
     name: "users",
     label: "Users",
     field: "users",
-    sortable: true
+    sortable: true,
   },
   {
     name: "actions",
     label: "Actions",
-    sortable: true
-  }
+    sortable: true,
+  },
 ];
-import { ref } from "vue";
+import { useQuasar } from "quasar";
 import { useRouter } from "vue-router";
 import getAPI from "../../scripts/axios-api";
 import { useGetObjects } from "../../hooks/GetData";
@@ -99,11 +93,8 @@ import getId from "../../scripts/get-id-from-url";
 import AddCustomerDialog from "./AddCustomer.vue";
 
 export default {
-  components: {
-    AddCustomerDialog
-  },
   setup() {
-    const addCustomerDialogVisible = ref(false);
+    const $q = useQuasar();
 
     const router = useRouter();
     const { isLoading, data, allGood, getData } = useGetObjects("/customers");
@@ -112,7 +103,7 @@ export default {
       const id = getId(row.url);
       router.push({
         name: "customer-details",
-        params: { customerId: id }
+        params: { customerId: id },
       });
     }
     function deleteCustomer(url) {
@@ -121,36 +112,34 @@ export default {
         .then(() => {
           getData();
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
     }
 
-    function openAddCustomer() {
-      addCustomerDialogVisible.value = true;
+    function showDialog() {
+      $q.dialog({
+        component: AddCustomerDialog,
+        componentProps: {
+          title: "something",
+        },
+      }).onOk(() => {
+        getData();
+      });
     }
-    function closeDialog() {
-      addCustomerDialogVisible.value = false;
-    }
-    function addCustomer() {
-      getData();
-      addCustomerDialogVisible.value = false;
-    }
+
     getData();
 
     return {
-      addCustomerDialogVisible,
       isLoading,
       deleteCustomer,
-      openAddCustomer,
-      closeDialog,
-      addCustomer,
       getId,
       allGood,
       data,
       openDetails,
-      columns
+      columns,
+      showDialog,
     };
-  }
+  },
 };
 </script>

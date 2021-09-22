@@ -1,30 +1,48 @@
 <template>
-  <base-dialog @cancel="$emit('cancel')" title="Add Customer">
-    <form @submit.prevent="addCustomer">
-      <label for="customer-name">Name</label>
-      <input type="text" v-model.trim="customerName" id="customer-name" />
-      <label id="customer-description">Description</label>
-      <textarea
-        v-model.trim="customerDescription"
-        id="customer-description"
-      ></textarea>
-      <div v-if="errorMessage">
-        <p>You need to fill out both inputs.</p>
-      </div>
-      <base-button>Save</base-button>
-    </form>
-  </base-dialog>
+  <q-dialog ref="dialogRef" @hide="isShowing = false">
+    <q-card class="q-dialog-plugin">
+      <q-card-section>
+        <q-form class="q-gutter-md">
+          <q-input
+            label="Customer name"
+            type="text"
+            v-model.trim="customerName"
+            id="customer-name"
+          />
+          <q-input
+            label="Description"
+            v-model="customerDescription"
+            filled
+            type="textarea"
+          />
+          <div v-if="errorMessage">
+            <p>You need to fill out both inputs.</p>
+          </div>
+        </q-form>
+      </q-card-section>
+      <q-card-actions align="right">
+        <q-btn color="primary" label="OK" @click="onOKClick" />
+        <q-btn flat label="Cancel" @click="onCancelClick" />
+      </q-card-actions>
+    </q-card>
+  </q-dialog>
 </template>
 
 <script>
+import { useDialogPluginComponent } from "quasar";
 import { ref } from "vue";
 import getAPI from "../../scripts/axios-api";
 
 export default {
+  props: ["title"],
+  emits: [...useDialogPluginComponent.emits],
   setup(_, context) {
+    const { dialogRef, onDialogHide, onDialogOK, onDialogCancel } =
+      useDialogPluginComponent();
     const customerName = ref("");
     const customerDescription = ref("");
     const errorMessage = ref(false);
+    dialogRef.value = false;
 
     function validateInput() {
       if (customerName.value === "") {
@@ -55,35 +73,18 @@ export default {
       customerName,
       customerDescription,
       errorMessage,
-      addCustomer,
+      dialogRef,
+      onDialogHide,
+      onOKClick() {
+        addCustomer();
+        onDialogOK();
+        // or with payload: onDialogOK({ ... })
+        // ...and it will also hide the dialog automatically
+      },
+
+      // we can passthrough onDialogCancel directly
+      onCancelClick: onDialogCancel,
     };
   },
 };
 </script>
-
-<style scoped>
-dialog {
-  margin: 0;
-  position: fixed;
-  top: 20vh;
-  left: 30%;
-  width: 40%;
-  background-color: white;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-  padding: 1rem;
-}
-label {
-  font-weight: bold;
-  display: block;
-  margin-bottom: 0.5rem;
-}
-
-input,
-textarea {
-  display: block;
-  width: 100%;
-  font: inherit;
-  padding: 0.15rem;
-  border: 1px solid #ccc;
-}
-</style>
