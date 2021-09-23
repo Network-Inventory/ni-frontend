@@ -120,9 +120,6 @@ export default {
     function showDialog() {
       $q.dialog({
         component: AddCustomerDialog,
-        componentProps: {
-          title: "something",
-        },
       }).onOk(() => {
         getData();
       });

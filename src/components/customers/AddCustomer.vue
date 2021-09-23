@@ -1,6 +1,9 @@
 <template>
   <q-dialog ref="dialogRef" @hide="isShowing = false">
     <q-card class="q-dialog-plugin">
+      <q-toolbar>
+        <q-toolbar-title>New Customer</q-toolbar-title>
+      </q-toolbar>
       <q-card-section>
         <q-form class="q-gutter-md">
           <q-input
@@ -34,7 +37,6 @@ import { ref } from "vue";
 import getAPI from "../../scripts/axios-api";
 
 export default {
-  props: ["title"],
   emits: [...useDialogPluginComponent.emits],
   setup(_, context) {
     const { dialogRef, onDialogHide, onDialogOK, onDialogCancel } =
