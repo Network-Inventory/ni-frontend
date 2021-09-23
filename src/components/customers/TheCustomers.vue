@@ -10,7 +10,7 @@
     <q-table
       @row-click="openDetails"
       title="Customers"
-      :rows="data.response"
+      :rows="data"
       :columns="columns"
       row-key="url"
     >
@@ -86,7 +86,10 @@ const columns = [
   },
 ];
 import { useQuasar } from "quasar";
+import { computed } from "vue";
 import { useRouter } from "vue-router";
+import { useStore } from "vuex";
+
 import getAPI from "../../scripts/axios-api";
 import { useGetObjects } from "../../hooks/GetData";
 import getId from "../../scripts/get-id-from-url";
@@ -95,9 +98,11 @@ import AddCustomerDialog from "./AddCustomer.vue";
 export default {
   setup() {
     const $q = useQuasar();
+    const $store = useStore();
 
     const router = useRouter();
-    const { isLoading, data, allGood, getData } = useGetObjects("/customers");
+    const { isLoading, _, allGood, getData } = useGetObjects("/customers");
+    const data = computed(() => $store.getters["customers/customers"]);
 
     function openDetails(_, row) {
       const id = getId(row.url);
