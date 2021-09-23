@@ -12,7 +12,7 @@
       title="Customers"
       :rows="data.response"
       :columns="columns"
-      row-key="name"
+      row-key="url"
     >
       <template v-slot:body-cell-actions="props">
         <q-td :props="props">
