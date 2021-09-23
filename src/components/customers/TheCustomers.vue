@@ -1,8 +1,5 @@
 <template>
-  <div class="q-pa-md" v-if="allGood">
-    <div v-if="isLoading">
-      <base-spinner></base-spinner>
-    </div>
+  <div class="q-pa-md">
     <div class="q-pa-md q-gutter-sm">
       <q-btn label="Add Customer" color="primary" @click="showDialog" />
     </div>
@@ -12,7 +9,7 @@
       title="Customers"
       :rows="data"
       :columns="columns"
-      row-key="url"
+      row-key="id"
     >
       <template v-slot:body-cell-actions="props">
         <q-td :props="props">
@@ -29,8 +26,6 @@
       </template>
     </q-table>
   </div>
-
-  <p v-else>Couldn't fetch the computer details.</p>
 </template>
 
 <script>
@@ -91,8 +86,6 @@ import { useRouter } from "vue-router";
 import { useStore } from "vuex";
 
 import getAPI from "../../scripts/axios-api";
-import { useGetObjects } from "../../hooks/GetData";
-import getId from "../../scripts/get-id-from-url";
 import AddCustomerDialog from "./AddCustomer.vue";
 
 export default {
@@ -101,21 +94,19 @@ export default {
     const $store = useStore();
 
     const router = useRouter();
-    const { isLoading, _, allGood, getData } = useGetObjects("/customers");
     const data = computed(() => $store.getters["customers/customers"]);
 
-    function openDetails(_, row) {
-      const id = getId(row.url);
+    function openDetails(_, customer) {
       router.push({
         name: "customer-details",
-        params: { customerId: id },
+        params: { customerId: customer.id },
       });
     }
     function deleteCustomer(url) {
       getAPI
         .delete(url)
         .then(() => {
-          getData();
+          $store.dispatch("customers/loadCustomers");
         })
         .catch((err) => {
           console.log(err);
@@ -126,17 +117,14 @@ export default {
       $q.dialog({
         component: AddCustomerDialog,
       }).onOk(() => {
-        getData();
+        $store.dispatch("customers/loadCustomers");
       });
     }
 
-    getData();
+    $store.dispatch("customers/loadCustomers");
 
     return {
-      isLoading,
       deleteCustomer,
-      getId,
-      allGood,
       data,
       openDetails,
       columns,
