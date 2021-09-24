@@ -1,32 +1,28 @@
 <template>
-  <base-card>
-    <div v-if="isLoading">
-      <base-spinner></base-spinner>
-    </div>
-    <div v-if="allGood">
-      <header>
-        <h1>{{ data.response.name }}</h1>
-      </header>
-      <p>{{ data.response.description }}</p>
-    </div>
-    <p v-else>Couldn't fetch the computer details.</p>
-    <base-button @click="$router.go(-1)">
-      Back
-    </base-button>
-  </base-card>
+  <div class="q-pa-md">
+    <q-card>
+      <q-card-section>
+        <div class="text-h6">{{ data.name }}</div>
+      </q-card-section>
+      <q-card-section>Bar</q-card-section>
+      <q-card-actions>
+        <q-btn label="Back" color="primary" @click="$router.go(-1)" />
+      </q-card-actions>
+    </q-card>
+  </div>
 </template>
 
 <script>
-import { useGetSingleObject } from "../../hooks/GetData";
+import { computed } from "vue";
+import { useStore } from "vuex";
 export default {
   props: ["computerId"],
-  data(props) {
-    const { isLoading, data, allGood, getData } = useGetSingleObject();
-    getData("computers", props.computerId);
+  setup(props) {
+    const $store = useStore();
+    const data = $store.dispatch("computers/computerDetails", props.id);
+
     return {
-      isLoading,
       data,
-      allGood,
     };
   },
 };

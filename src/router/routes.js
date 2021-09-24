@@ -27,8 +27,8 @@ const routes = [
   {
     name: "computer-details",
     path: "/computers/:computerId",
-    component: ComputerDetails,
-    props: true,
+    component: MainLayout,
+    children: [{ path: "", component: ComputerDetails, props: true }],
   },
   {
     path: "/:catchAll(.*)*",
