@@ -1,5 +1,4 @@
 <template>
-  >
   <div class="q-pa-md">
     <q-table
       @row-click="openDetails"
