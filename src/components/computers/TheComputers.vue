@@ -1,14 +1,12 @@
 <template>
-  <div v-if="isLoading">
-    <base-spinner></base-spinner>
-  </div>
-  <div class="q-pa-md" v-if="allGood">
+  >
+  <div class="q-pa-md">
     <q-table
       @row-click="openDetails"
       title="Computers"
-      :rows="data.response"
+      :rows="data"
       :columns="columns"
-      row-key="name"
+      row-key="id"
     >
       <template v-slot:body-cell-actions="props">
         <q-td :props="props">
@@ -25,16 +23,14 @@
       </template>
     </q-table>
   </div>
-
-  <p v-else>Couldn't fetch the computer details.</p>
 </template>
 
 <script>
 import { useRouter } from "vue-router";
+import { computed } from "vue";
+import { useStore } from "vuex";
 
 import getAPI from "../../scripts/axios-api";
-import { useGetObjects } from "../../hooks/GetData";
-import getId from "../../scripts/get-id-from-url";
 
 export default {
   setup() {
@@ -45,84 +41,84 @@ export default {
         label: "Name",
         align: "left",
         field: "name",
-        sortable: true
+        sortable: true,
       },
       {
         name: "serialnumber",
         align: "center",
         label: "Serialnumber",
         field: "serialnumber",
-        sortable: true
+        sortable: true,
       },
       {
         name: "installation-date",
         label: "Installation date",
         field: "installation_date",
-        sortable: true
+        sortable: true,
       },
       {
         name: "category",
         label: "Category",
-        field: row => row.category?.name,
-        sortable: true
+        field: (row) => row.category?.name,
+        sortable: true,
       },
       {
         name: "owner",
         label: "Owner",
-        field: row => row.owner?.name,
-        sortable: true
+        field: (row) => row.owner?.name,
+        sortable: true,
       },
       {
         name: "manufacturer",
         label: "Manufacturer",
-        field: row => row.manufacturer?.name,
-        sortable: true
+        field: (row) => row.manufacturer?.name,
+        sortable: true,
       },
       {
         name: "model",
         label: "Model",
-        field: row => row.model?.name,
-        sortable: true
+        field: (row) => row.model?.name,
+        sortable: true,
       },
       {
         name: "location",
         label: "Location",
-        field: row => row.location?.name,
-        sortable: true
+        field: (row) => row.location?.name,
+        sortable: true,
       },
       {
         name: "user",
         label: "User",
-        field: row => row.user?.name,
-        sortable: true
+        field: (row) => row.user?.name,
+        sortable: true,
       },
       {
         name: "os",
         label: "OS",
-        field: row => row.os?.name,
-        sortable: true
+        field: (row) => row.os?.name,
+        sortable: true,
       },
       {
         name: "host",
         label: "Host",
-        field: row => row.host?.name,
-        sortable: true
+        field: (row) => row.host?.name,
+        sortable: true,
       },
       {
         name: "actions",
         label: "Actions",
-        sortable: true
-      }
+        sortable: true,
+      },
     ];
 
     const router = useRouter();
-    const { isLoading, data, allGood, getData } = useGetObjects("/computers");
+    const $store = useStore();
+    const data = computed(() => $store.getters["computers/computers"]);
 
     function openDetails(_, row) {
-      const id = getId(row.url);
       router.push({
         name: "computer-details",
-        params: { computerId: id }
+        params: { computerId: row.id },
       });
     }
 
@@ -139,25 +135,22 @@ export default {
       getAPI
         .delete(url)
         .then(() => {
-          getData();
+          $store.dispatch("computers/loadAllComputers");
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
     }
 
-    getData();
+    $store.dispatch("computers/loadAllComputers");
     return {
       dateColour,
       deleteComputer,
-      getId,
-      isLoading,
-      allGood,
       data,
       columns,
-      openDetails
+      openDetails,
     };
-  }
+  },
 };
 </script>
 <style scoped>

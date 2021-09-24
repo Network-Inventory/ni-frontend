@@ -1,6 +1,7 @@
 import { store } from "quasar/wrappers";
 import { createStore } from "vuex";
 
+import computers from "./computers";
 import customers from "./customers";
 
 /*
@@ -15,6 +16,7 @@ import customers from "./customers";
 export default store(function (/* { ssrContext } */) {
   const Store = createStore({
     modules: {
+      computers,
       customers,
     },
 
