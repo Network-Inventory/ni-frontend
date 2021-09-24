@@ -29,7 +29,9 @@ export async function addCustomer(context, data) {
   };
   try {
     const response = await axios.post("/customers", customer);
-    context.commit("addNewCustomer", response.data);
+    const responseCustomer = response.data;
+    responseCustomer.id = getId(responseCustomer.url);
+    context.commit("addNewCustomer", responseCustomer);
   } catch (err) {
     const error = new Error(err.message || "Failed to post!");
     throw error;
