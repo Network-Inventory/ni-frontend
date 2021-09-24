@@ -34,11 +34,12 @@
 <script>
 import { useDialogPluginComponent } from "quasar";
 import { ref } from "vue";
-import getAPI from "../../scripts/axios-api";
+import { useStore } from "vuex";
 
 export default {
   emits: [...useDialogPluginComponent.emits],
   setup(_, context) {
+    const $store = useStore();
     const { dialogRef, onDialogHide, onDialogOK, onDialogCancel } =
       useDialogPluginComponent();
     const customerName = ref("");
@@ -57,17 +58,11 @@ export default {
 
     function addCustomer() {
       if (validateInput()) {
-        getAPI
-          .post("/customers", {
-            name: customerName.value,
-            description: customerDescription.value,
-          })
-          .then((response) => {
-            context.emit("ok", response.data);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
+        const payload = {
+          name: customerName.value,
+          description: customerDescription.value,
+        };
+        $store.dispatch("customers/addCustomer", payload);
       }
     }
 

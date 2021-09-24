@@ -116,8 +116,6 @@ export default {
     function showDialog() {
       $q.dialog({
         component: AddCustomerDialog,
-      }).onOk(() => {
-        $store.dispatch("customers/loadCustomers");
       });
     }
 

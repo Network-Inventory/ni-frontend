@@ -21,3 +21,17 @@ export async function loadCustomers(context) {
     throw error;
   }
 }
+
+export async function addCustomer(context, data) {
+  const customer = {
+    name: data.name,
+    description: data.description,
+  };
+  try {
+    const response = await axios.post("/customers", customer);
+    context.commit("addNewCustomer", response.data);
+  } catch (err) {
+    const error = new Error(err.message || "Failed to post!");
+    throw error;
+  }
+}
