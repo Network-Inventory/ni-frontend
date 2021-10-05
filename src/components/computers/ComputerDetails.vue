@@ -4,7 +4,7 @@
       <q-card-section>
         <div class="text-h6">{{ data.name }}</div>
       </q-card-section>
-      <q-card-section>Bar</q-card-section>
+      <q-card-section>{{ data.description }}</q-card-section>
       <q-card-actions>
         <q-btn label="Back" color="primary" @click="$router.go(-1)" />
       </q-card-actions>
