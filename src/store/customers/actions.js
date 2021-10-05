@@ -37,3 +37,13 @@ export async function addCustomer(context, data) {
     throw error;
   }
 }
+export async function customerDetails(context, id) {
+  try {
+    const response = await axios.get("/customers", { customerId: id });
+    const responseData = response.data.results[0];
+    return responseData;
+  } catch (err) {
+    const error = new Error(err.message || "Failed to fetch!");
+    throw error;
+  }
+}
