@@ -39,7 +39,7 @@ export async function addCustomer(context, data) {
 }
 export async function customerDetails(_, id) {
   try {
-    const response = await axios.get("/customers", { customerId: id });
+    const response = await axios.get("/customers/" + id);
     const responseData = response.data;
     return responseData;
   } catch (err) {
