@@ -17,10 +17,10 @@ export async function loadAllComputers(context) {
     throw error;
   }
 }
-export async function computerDetails(context, id) {
+export async function computerDetails(_, id) {
   try {
-    const response = await axios.get("/computers", { computerId: id });
-    const responseData = response.data.results[0];
+    const response = await axios.get("/computers/" + id );
+    const responseData = response.data;
     return responseData;
   } catch (err) {
     const error = new Error(err.message || "Failed to fetch!");
