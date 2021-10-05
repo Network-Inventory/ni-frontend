@@ -7,29 +7,35 @@ const ComputerDetails = () =>
 const TheComputers = () => import("../components/computers/TheComputers.vue");
 
 const routes = [
+  { path: "/", redirect: "/customers" },
   {
-    path: "/",
+    path: "/customers",
     component: MainLayout,
-    children: [{ path: "", component: TheCustomers }],
-  },
-  {
-    name: "customer-details",
-    path: "/customers/:customerId",
-    component: CustomerDetails,
-    props: true,
+    children: [
+      { path: "", component: TheCustomers },
+      {
+        name: "customer-details",
+        path: "/customers/:customerId",
+        component: CustomerDetails,
+        props: true,
+      },
+    ],
   },
   {
     name: "computers",
     path: "/computers",
     component: MainLayout,
-    children: [{ path: "", component: TheComputers }],
+    children: [
+      { path: "", component: TheComputers },
+      {
+        name: "computer-details",
+        path: "/computers/:computerId",
+        component: ComputerDetails,
+        props: true,
+      },
+    ],
   },
-  {
-    name: "computer-details",
-    path: "/computers/:computerId",
-    component: MainLayout,
-    children: [{ path: "", component: ComputerDetails, props: true }],
-  },
+
   {
     path: "/:catchAll(.*)*",
     component: () => import("pages/Error404.vue"),
