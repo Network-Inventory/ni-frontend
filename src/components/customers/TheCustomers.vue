@@ -19,7 +19,7 @@
               round
               color="red"
               icon="delete"
-              @click.stop="deleteCustomer(props.row.url)"
+              @click.stop="deleteCustomer(props.row.id)"
             />
           </div>
         </q-td>
@@ -102,9 +102,9 @@ export default {
         params: { customerId: customer.id },
       });
     }
-    function deleteCustomer(url) {
+    function deleteCustomer(id) {
       getAPI
-        .delete(url)
+        .delete("/customers/" + id)
         .then(() => {
           $store.dispatch("customers/loadCustomers");
         })

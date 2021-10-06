@@ -15,7 +15,7 @@
               round
               color="red"
               icon="delete"
-              @click.stop="deleteComputer(props.row.url)"
+              @click.stop="deleteComputer(props.row.id)"
             />
           </div>
         </q-td>
@@ -130,9 +130,9 @@ export default {
         return { "white-background": true };
       }
     }
-    function deleteComputer(url) {
+    function deleteComputer(id) {
       getAPI
-        .delete(url)
+        .delete("/computers/" + id)
         .then(() => {
           $store.dispatch("computers/loadAllComputers");
         })
