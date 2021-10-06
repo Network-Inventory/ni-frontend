@@ -2,9 +2,9 @@
   <div class="q-pa-md">
     <q-card>
       <q-card-section>
-        <div class="text-h6">{{ data.computer?.name }}</div>
+        <div class="text-h6">{{ data?.name }}</div>
       </q-card-section>
-      <q-card-section>{{ data.computer?.description }}</q-card-section>
+      <q-card-section>{{ data?.description }}</q-card-section>
       <q-card-actions>
         <q-btn label="Back" color="primary" @click="$router.go(-1)" />
       </q-card-actions>
@@ -13,18 +13,18 @@
 </template>
 
 <script>
-import { reactive } from "vue";
+import { ref } from "vue";
 import { useStore } from "vuex";
 export default {
   props: ["computerId"],
   setup(props) {
     const $store = useStore();
-    const data = reactive({ computer: {} });
+    const data = ref(null);
 
     $store
       .dispatch("computers/computerDetails", props.computerId)
       .then(function (computer) {
-        data.computer = computer;
+        data.value = computer;
       });
 
     return {
