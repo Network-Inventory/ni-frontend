@@ -69,20 +69,21 @@
             </q-item-section>
           </q-item>
           <q-item>
-            <q-item-section>
-              <q-item-label overline>Nets</q-item-label>
-              <div v-if="data?.net">
+            <div v-if="data?.net">
+              <q-list>
+                <q-item-label overline>Nets</q-item-label>
                 <q-item
                   v-for="net in data?.net"
                   :key="net.id"
                   :to="{
                     name: 'computer-details',
-                    params: { computerId: net.url },
+                    params: { computerId: net.id },
                   }"
+                  dense
                   >{{ net.name }}</q-item
                 >
-              </div>
-            </q-item-section>
+              </q-list>
+            </div>
           </q-item>
         </q-list>
       </div>
@@ -97,7 +98,6 @@
 <script>
 import { ref } from "vue";
 import { useStore } from "vuex";
-import getId from "../../scripts/get-id-from-url";
 
 export default {
   props: ["computerId"],
@@ -113,7 +113,6 @@ export default {
 
     return {
       data,
-      getId,
     };
   },
 };
