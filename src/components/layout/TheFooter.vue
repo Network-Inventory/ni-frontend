@@ -1,5 +1,4 @@
 <template>
-  <footer></footer>
   <q-footer class="bg-grey-8 text-white">
     <q-toolbar>
       <q-toolbar-title>
