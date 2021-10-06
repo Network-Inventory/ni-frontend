@@ -28,44 +28,44 @@
           <q-item>
             <q-item-section>
               <q-item-label overline>Category</q-item-label>
-              <q-item-label>{{ data?.category.name }}</q-item-label>
+              <q-item-label>{{ data?.category?.name }}</q-item-label>
             </q-item-section>
           </q-item>
           <q-item>
             <q-item-section>
               <q-item-label overline>Owner</q-item-label>
-              <q-item-label>{{ data?.owner.name }}</q-item-label>
+              <q-item-label>{{ data?.owner?.name }}</q-item-label>
             </q-item-section>
           </q-item>
 
           <q-item>
             <q-item-section>
               <q-item-label overline>Customer</q-item-label>
-              <q-item-label>{{ data?.customer.name }}</q-item-label>
+              <q-item-label>{{ data?.customer?.name }}</q-item-label>
             </q-item-section>
           </q-item>
           <q-item>
             <q-item-section>
               <q-item-label overline>Manufacturer</q-item-label>
-              <q-item-label>{{ data?.manufacturer.name }}</q-item-label>
+              <q-item-label>{{ data?.manufacturer?.name }}</q-item-label>
             </q-item-section>
           </q-item>
           <q-item>
             <q-item-section>
               <q-item-label overline>Model</q-item-label>
-              <q-item-label>{{ data?.model.name }}</q-item-label>
+              <q-item-label>{{ data?.model?.name }}</q-item-label>
             </q-item-section>
           </q-item>
           <q-item>
             <q-item-section>
               <q-item-label overline>Location</q-item-label>
-              <q-item-label>{{ data?.location.name }}</q-item-label>
+              <q-item-label>{{ data?.location?.name }}</q-item-label>
             </q-item-section>
           </q-item>
           <q-item>
             <q-item-section>
               <q-item-label overline>User</q-item-label>
-              <q-item-label>{{ data?.user.name }}</q-item-label>
+              <q-item-label>{{ data?.user?.name }}</q-item-label>
             </q-item-section>
           </q-item>
           <q-item>
