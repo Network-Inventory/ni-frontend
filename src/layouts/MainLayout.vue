@@ -48,7 +48,7 @@ const linksList = [
     title: "Computers",
     caption: "All computers in the inventory",
     icon: "computer",
-    link: "computers",
+    link: "/computers",
   },
 ];
 
