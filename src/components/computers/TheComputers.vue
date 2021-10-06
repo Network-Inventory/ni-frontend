@@ -1,5 +1,8 @@
 <template>
   <div class="q-pa-md">
+    <div class="q-pa-md q-gutter-sm">
+      <q-btn label="Add Computer" color="primary" @click="showDialog" />
+    </div>
     <q-table
       @row-click="openDetails"
       title="Computers"
@@ -25,9 +28,11 @@
 </template>
 
 <script>
+import { useQuasar } from "quasar";
 import { useRouter } from "vue-router";
 import { computed } from "vue";
 import { useStore } from "vuex";
+import AddComputerDialog from "./AddComputer.vue";
 
 import getAPI from "../../scripts/axios-api";
 
@@ -110,6 +115,7 @@ export default {
       },
     ];
 
+    const $q = useQuasar();
     const router = useRouter();
     const $store = useStore();
     const data = computed(() => $store.getters["computers/computers"]);
@@ -141,6 +147,11 @@ export default {
         });
     }
 
+    function showDialog() {
+      $q.dialog({
+        component: AddComputerDialog,
+      });
+    }
     $store.dispatch("computers/loadAllComputers");
     return {
       dateColour,
@@ -148,6 +159,7 @@ export default {
       data,
       columns,
       openDetails,
+      showDialog,
     };
   },
 };
