@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import EssentialLink from "components/EssentialLink.vue";
+import EssentialLink from "src/components/UI/EssentialLink.vue";
 import TheFooter from "components/layout/TheFooter.vue";
 
 const linksList = [
