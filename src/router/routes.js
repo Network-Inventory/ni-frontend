@@ -1,4 +1,4 @@
-const MainLayout = () => import("layouts/MainLayout.vue");
+import MainLayout from "layouts/MainLayout.vue";
 const TheCustomers = () => import("../components/customers/TheCustomers.vue");
 const CustomerDetails = () =>
   import("../components/customers/CustomerDetails.vue");
