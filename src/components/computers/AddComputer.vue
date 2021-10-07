@@ -18,6 +18,15 @@
             filled
             type="textarea"
           />
+
+          <q-select
+            v-model="selectedCustomer"
+            :options="customers"
+            option-label="name"
+            option-value="id"
+            label="Customer"
+          />
+
           <div v-if="errorMessage">
             <p>You need to fill out both inputs.</p>
           </div>
@@ -33,7 +42,7 @@
 
 <script>
 import { useDialogPluginComponent } from "quasar";
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { useStore } from "vuex";
 
 export default {
@@ -44,8 +53,11 @@ export default {
       useDialogPluginComponent();
     const computerName = ref("");
     const computerDescription = ref("");
+    const selectedCustomer = ref(null);
     const errorMessage = ref(false);
     dialogRef.value = false;
+
+    const customers = computed(() => $store.getters["customers/customers"]);
 
     function validateInput() {
       if (computerName.value === "") {
@@ -61,6 +73,7 @@ export default {
         const payload = {
           name: computerName.value,
           description: computerDescription.value,
+          customer: selectedCustomer.value.id,
         };
         $store.dispatch("computers/addComputer", payload);
       }
@@ -69,6 +82,8 @@ export default {
     return {
       computerName,
       computerDescription,
+      selectedCustomer,
+      customers,
       errorMessage,
       dialogRef,
       onDialogHide,
