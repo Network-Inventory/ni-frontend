@@ -37,7 +37,7 @@ export async function loadDeviceManufacturers(context) {
   try {
     const response = await axios.get("/device-manufacturers");
     const manufacturers = response.data.results;
-    context.commit("setDeviceCategories", manufacturers);
+    context.commit("setDeviceManufacturers", manufacturers);
   } catch (err) {
     const error = new Error(err.message || "Failed to fetch!");
     throw error;
