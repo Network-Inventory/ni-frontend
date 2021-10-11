@@ -120,6 +120,8 @@ export default {
     }
 
     $store.dispatch("customers/loadCustomers");
+    $store.dispatch("devices/loadDeviceCategories");
+    $store.dispatch("devices/loadDeviceManufacturers");
 
     return {
       deleteCustomer,

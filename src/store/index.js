@@ -3,6 +3,7 @@ import { createStore } from "vuex";
 
 import computers from "./computers";
 import customers from "./customers";
+import devices from "./devices";
 
 /*
  * If not building with SSR mode, you can
@@ -18,6 +19,7 @@ export default store(function (/* { ssrContext } */) {
     modules: {
       computers,
       customers,
+      devices,
     },
 
     // enable strict mode (adds overhead!)
