@@ -83,9 +83,7 @@ const columns = [
 import { useQuasar } from "quasar";
 import { computed } from "vue";
 import { useRouter } from "vue-router";
-import { useStore } from "vuex";
 
-import getAPI from "../../scripts/axios-api";
 import AddCustomerDialog from "./AddCustomer.vue";
 
 import Customer from "models/Customer";
@@ -93,7 +91,6 @@ import Customer from "models/Customer";
 export default {
   setup() {
     const $q = useQuasar();
-    const $store = useStore();
 
     const router = useRouter();
     const data = computed(() => Customer.all());

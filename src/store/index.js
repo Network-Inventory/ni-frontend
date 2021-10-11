@@ -5,7 +5,6 @@ import VuexORM from "@vuex-orm/core";
 import VuexORMAxios from "@vuex-orm/plugin-axios";
 
 import computers from "./computers";
-import customers from "./customers";
 import Customer from "models/Customer";
 
 VuexORM.use(VuexORMAxios, {
@@ -19,7 +18,6 @@ export default store(function (/* { ssrContext } */) {
   const Store = createStore({
     modules: {
       computers,
-      customers,
     },
     plugins: [VuexORM.install(database)],
 
