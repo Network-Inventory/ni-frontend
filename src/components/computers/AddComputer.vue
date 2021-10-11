@@ -26,7 +26,13 @@
             option-value="id"
             label="Customer"
           />
-
+          <q-select
+            v-model="selectedCategory"
+            :options="categories"
+            option-label="name"
+            option-value="id"
+            label="Category"
+          />
           <div v-if="errorMessage">
             <p>You need to fill out both inputs.</p>
           </div>
@@ -54,10 +60,14 @@ export default {
     const computerName = ref("");
     const computerDescription = ref("");
     const selectedCustomer = ref(null);
+    const selectedCategory = ref(null);
     const errorMessage = ref(false);
     dialogRef.value = false;
 
     const customers = computed(() => $store.getters["customers/customers"]);
+    const categories = computed(
+      () => $store.getters["devices/deviceCategories"]
+    );
 
     function validateInput() {
       if (computerName.value === "") {
@@ -83,7 +93,9 @@ export default {
       computerName,
       computerDescription,
       selectedCustomer,
+      selectedCategory,
       customers,
+      categories,
       errorMessage,
       dialogRef,
       onDialogHide,
