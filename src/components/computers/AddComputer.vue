@@ -51,6 +51,8 @@ import { useDialogPluginComponent } from "quasar";
 import { ref, computed } from "vue";
 import { useStore } from "vuex";
 
+import Customer from "models/Customer";
+
 export default {
   emits: [...useDialogPluginComponent.emits],
   setup(_, context) {
@@ -64,7 +66,7 @@ export default {
     const errorMessage = ref(false);
     dialogRef.value = false;
 
-    const customers = computed(() => $store.getters["customers/customers"]);
+    const customers = computed(() => Customer.all());
     const categories = computed(
       () => $store.getters["devices/deviceCategories"]
     );
@@ -84,6 +86,7 @@ export default {
           name: computerName.value,
           description: computerDescription.value,
           customer: selectedCustomer.value.id,
+          category: selectedCategory.value.id,
         };
         $store.dispatch("computers/addComputer", payload);
       }
