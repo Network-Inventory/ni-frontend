@@ -4,7 +4,7 @@ export function setDevices(state, payload) {
 export function addNewDevice(state, payload) {
   state.devices.push(payload);
 }
-export function setDeviceManufaturers(state, payload) {
+export function setDeviceManufacturers(state, payload) {
   state.device_manfucaturers = payload;
 }
 export function addNewDeviceManufacturer(state, payload) {
