@@ -105,14 +105,8 @@ export default {
       });
     }
     function deleteCustomer(id) {
-      getAPI
-        .delete("/customers/" + id)
-        .then(() => {
-          $store.dispatch("customers/loadCustomers");
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      const customerId = id.toString();
+      Customer.api().delete(customerId, { delete: customerId });
     }
 
     function showDialog() {
@@ -121,7 +115,7 @@ export default {
       });
     }
 
-    $store.dispatch("customers/loadCustomers");
+    Customer.api().get();
 
     return {
       deleteCustomer,

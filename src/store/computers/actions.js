@@ -15,6 +15,7 @@ export async function addComputer(context, data) {
     name: data.name,
     description: data.description,
     customer: data.customer,
+    category: data.category,
   };
   try {
     console.log(computer);

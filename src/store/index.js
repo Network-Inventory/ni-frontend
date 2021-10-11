@@ -1,21 +1,17 @@
 import { store } from "quasar/wrappers";
 import { createStore } from "vuex";
+import axios from "axios";
 import VuexORM from "@vuex-orm/core";
+import VuexORMAxios from "@vuex-orm/plugin-axios";
 
 import computers from "./computers";
 import customers from "./customers";
 import Customer from "models/Customer";
 
-/*
- * If not building with SSR mode, you can
- * directly export the Store instantiation;
- *
- * The function below can be async too; either use
- * async/await or return a Promise which resolves
- * with the Store instance.
- */
-
-// Create a new instance of Database.
+VuexORM.use(VuexORMAxios, {
+  axios,
+  dataKey: "results",
+});
 const database = new VuexORM.Database();
 database.register(Customer);
 

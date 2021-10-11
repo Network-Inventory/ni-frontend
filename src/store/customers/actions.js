@@ -1,10 +1,11 @@
+import Customer from "models/Customer";
 import axios from "../../scripts/axios-api";
 
 export async function loadCustomers(context) {
   try {
     const response = await axios.get("/customers");
     const customers = response.data.results;
-    context.commit("setCustomers", customers);
+    Customer.insert({ data: customers });
   } catch (err) {
     const error = new Error(err.message || "Failed to fetch!");
     throw error;
@@ -19,7 +20,7 @@ export async function addCustomer(context, data) {
   try {
     const response = await axios.post("/customers", customer);
     const responseCustomer = response.data;
-    context.commit("addNewCustomer", responseCustomer);
+    Customer.insert({ data: responseCustomer });
   } catch (err) {
     const error = new Error(err.message || "Failed to post!");
     throw error;
