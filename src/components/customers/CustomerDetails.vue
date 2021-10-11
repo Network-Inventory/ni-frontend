@@ -14,17 +14,12 @@
 
 <script>
 import { ref } from "vue";
-import { useStore } from "vuex";
+import Customer from "models/Customer";
 export default {
   props: ["customerId"],
   setup(props) {
-    const $store = useStore();
     const data = ref(null);
-    $store
-      .dispatch("customers/customerDetails", props.customerId)
-      .then(function (customer) {
-        data.value = customer;
-      });
+    data.value = Customer.find(props.customerId);
 
     return {
       data,

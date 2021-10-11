@@ -1,9 +1,10 @@
 import { store } from "quasar/wrappers";
 import { createStore } from "vuex";
+import VuexORM from "@vuex-orm/core";
 
 import computers from "./computers";
 import customers from "./customers";
-import devices from "./devices";
+import Customer from "models/Customer";
 
 /*
  * If not building with SSR mode, you can
@@ -14,13 +15,17 @@ import devices from "./devices";
  * with the Store instance.
  */
 
+// Create a new instance of Database.
+const database = new VuexORM.Database();
+database.register(Customer);
+
 export default store(function (/* { ssrContext } */) {
   const Store = createStore({
     modules: {
       computers,
       customers,
-      devices,
     },
+    plugins: [VuexORM.install(database)],
 
     // enable strict mode (adds overhead!)
     // for dev mode and --debug builds only

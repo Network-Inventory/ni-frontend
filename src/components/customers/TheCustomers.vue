@@ -88,13 +88,15 @@ import { useStore } from "vuex";
 import getAPI from "../../scripts/axios-api";
 import AddCustomerDialog from "./AddCustomer.vue";
 
+import Customer from "models/Customer";
+
 export default {
   setup() {
     const $q = useQuasar();
     const $store = useStore();
 
     const router = useRouter();
-    const data = computed(() => $store.getters["customers/customers"]);
+    const data = computed(() => Customer.all());
 
     function openDetails(_, customer) {
       router.push({
@@ -120,8 +122,6 @@ export default {
     }
 
     $store.dispatch("customers/loadCustomers");
-    $store.dispatch("devices/loadDeviceCategories");
-    $store.dispatch("devices/loadDeviceManufacturers");
 
     return {
       deleteCustomer,
