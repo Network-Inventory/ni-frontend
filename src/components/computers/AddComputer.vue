@@ -62,7 +62,7 @@ export default {
     const computerName = ref("");
     const computerDescription = ref("");
     const selectedCustomer = ref(null);
-    const selectedCategory = ref(null);
+    const selectedCategory = ref("");
     const errorMessage = ref(false);
     dialogRef.value = false;
 

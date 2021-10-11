@@ -34,12 +34,12 @@
 <script>
 import { useDialogPluginComponent } from "quasar";
 import { ref } from "vue";
-import { useStore } from "vuex";
+
+import Customer from "models/Customer";
 
 export default {
   emits: [...useDialogPluginComponent.emits],
   setup(_, context) {
-    const $store = useStore();
     const { dialogRef, onDialogHide, onDialogOK, onDialogCancel } =
       useDialogPluginComponent();
     const customerName = ref("");
@@ -58,11 +58,10 @@ export default {
 
     function addCustomer() {
       if (validateInput()) {
-        const payload = {
+        Customer.api().post("", {
           name: customerName.value,
           description: customerDescription.value,
-        };
-        $store.dispatch("customers/addCustomer", payload);
+        });
       }
     }
 

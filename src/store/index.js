@@ -9,7 +9,6 @@ import Customer from "models/Customer";
 
 VuexORM.use(VuexORMAxios, {
   axios,
-  dataKey: "results",
 });
 const database = new VuexORM.Database();
 database.register(Customer);

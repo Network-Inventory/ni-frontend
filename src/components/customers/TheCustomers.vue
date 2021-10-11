@@ -112,7 +112,9 @@ export default {
       });
     }
 
-    Customer.api().get();
+    Customer.api().get("", {
+      dataKey: "results",
+    });
 
     return {
       deleteCustomer,
