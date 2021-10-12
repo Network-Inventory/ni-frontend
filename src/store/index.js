@@ -8,6 +8,7 @@ import { ApiUrl } from "src/scripts/ApiUrl";
 
 import computers from "./computers";
 import { Weekday, DayOfMonth, Month } from "models/core/Calendar";
+import { HoursInDay, MinutesInHour } from "models/core/Time";
 import Customer from "models/Customer";
 
 VuexORM.use(VuexORMAxios, {
@@ -18,6 +19,8 @@ const database = new VuexORM.Database();
 database.register(Weekday);
 database.register(DayOfMonth);
 database.register(Month);
+database.register(HoursInDay);
+database.register(MinutesInHour);
 database.register(Customer);
 
 export default store(function (/* { ssrContext } */) {
