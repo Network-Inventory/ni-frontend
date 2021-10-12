@@ -14,6 +14,12 @@ export class HoursInDay extends Model {
       dataKey: "results",
     });
   }
+  static getById(id) {
+    return this.api().get(`hours-in-day/${id}`);
+  }
+  static remove(id) {
+    return this.api().delete(`hours-in-day/${id}`, { delete: id });
+  }
 }
 
 export class MinutesInHour extends Model {
@@ -29,5 +35,11 @@ export class MinutesInHour extends Model {
     return this.api().get("minutes-in-hour", {
       dataKey: "results",
     });
+  }
+  static getById(id) {
+    return this.api().get(`minutes-in-hour/${id}`);
+  }
+  static remove(id) {
+    return this.api().delete(`minutes-in-hour/${id}`, { delete: id });
   }
 }

@@ -15,6 +15,12 @@ export class Weekday extends Model {
       dataKey: "results",
     });
   }
+  static getById(id) {
+    return this.api().get(`weekdays/${id}`);
+  }
+  static remove(id) {
+    return this.api().delete(`weekdays/${id}`, { delete: id });
+  }
 }
 
 export class DayOfMonth extends Model {
@@ -30,6 +36,12 @@ export class DayOfMonth extends Model {
     return this.api().get("days-of-month", {
       dataKey: "results",
     });
+  }
+  static getById(id) {
+    return this.api().get(`days-of-month/${id}`);
+  }
+  static remove(id) {
+    return this.api().delete(`days-of-month/${id}`, { delete: id });
   }
 }
 
@@ -47,5 +59,11 @@ export class Month extends Model {
     return this.api().get("months", {
       dataKey: "results",
     });
+  }
+  static getById(id) {
+    return this.api().get(`months/${id}`);
+  }
+  static remove(id) {
+    return this.api().delete(`months/${id}`, { delete: id });
   }
 }
