@@ -104,7 +104,7 @@ export default {
       });
     }
     function deleteCustomer(id) {
-      Customer.api().delete(`customers/${id}`, { delete: id });
+      Customer.remove(id);
     }
 
     function showDialog() {

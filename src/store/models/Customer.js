@@ -15,4 +15,10 @@ export default class Customer extends Model {
       dataKey: "results",
     });
   }
+  static getById(id) {
+    return this.api().get(`customers/${id}`);
+  }
+  static remove(id) {
+    return this.api().delete(`customers/${id}`, { delete: id });
+  }
 }
