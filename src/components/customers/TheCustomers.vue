@@ -104,7 +104,7 @@ export default {
     }
     function deleteCustomer(id) {
       const customerId = id.toString();
-      Customer.api().delete(customerId, { delete: customerId });
+      Customer.api().delete("customers/" + customerId, { delete: customerId });
     }
 
     function showDialog() {
