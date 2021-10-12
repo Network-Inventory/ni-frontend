@@ -7,6 +7,7 @@ import VuexORMAxios from "@vuex-orm/plugin-axios";
 import { ApiUrl } from "src/scripts/ApiUrl";
 
 import computers from "./computers";
+import { Weekday, DayOfMonth, Month } from "models/core/Calendar";
 import Customer from "models/Customer";
 
 VuexORM.use(VuexORMAxios, {
@@ -14,6 +15,9 @@ VuexORM.use(VuexORMAxios, {
   baseURL: ApiUrl,
 });
 const database = new VuexORM.Database();
+database.register(Weekday);
+database.register(DayOfMonth);
+database.register(Month);
 database.register(Customer);
 
 export default store(function (/* { ssrContext } */) {

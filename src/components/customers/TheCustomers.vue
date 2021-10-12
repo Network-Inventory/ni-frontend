@@ -86,6 +86,7 @@ import { useRouter } from "vue-router";
 
 import AddCustomerDialog from "./AddCustomer.vue";
 
+import { Weekday, DayOfMonth, Month } from "models/core/Calendar";
 import Customer from "models/Customer";
 
 export default {
@@ -111,6 +112,16 @@ export default {
         component: AddCustomerDialog,
       });
     }
+
+    Weekday.api().get("weekdays", {
+      dataKey: "results",
+    });
+    DayOfMonth.api().get("days-of-month", {
+      dataKey: "results",
+    });
+    Month.api().get("months", {
+      dataKey: "results",
+    });
 
     Customer.api().get("customers", {
       dataKey: "results",
