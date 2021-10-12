@@ -104,8 +104,7 @@ export default {
       });
     }
     function deleteCustomer(id) {
-      const customerId = id.toString();
-      Customer.api().delete("customers/" + customerId, { delete: customerId });
+      Customer.api().delete(`customers/${id}`, { delete: id });
     }
 
     function showDialog() {
@@ -114,25 +113,13 @@ export default {
       });
     }
 
-    Weekday.api().get("weekdays", {
-      dataKey: "results",
-    });
-    DayOfMonth.api().get("days-of-month", {
-      dataKey: "results",
-    });
-    Month.api().get("months", {
-      dataKey: "results",
-    });
-    HoursInDay.api().get("hours-in-day", {
-      dataKey: "results",
-    });
-    MinutesInHour.api().get("minutes-in-hour", {
-      dataKey: "results",
-    });
+    Weekday.fetch();
+    DayOfMonth.fetch();
+    Month.fetch();
+    HoursInDay.fetch();
+    MinutesInHour.fetch();
 
-    Customer.api().get("customers", {
-      dataKey: "results",
-    });
+    Customer.fetch();
 
     return {
       deleteCustomer,

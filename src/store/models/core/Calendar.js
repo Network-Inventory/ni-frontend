@@ -10,6 +10,11 @@ export class Weekday extends Model {
       value: this.number(null),
     };
   }
+  static fetch() {
+    return this.api().get("weekdays", {
+      dataKey: "results",
+    });
+  }
 }
 
 export class DayOfMonth extends Model {
@@ -21,7 +26,13 @@ export class DayOfMonth extends Model {
       name: this.attr(""),
     };
   }
+  static fetch() {
+    return this.api().get("days-of-month", {
+      dataKey: "results",
+    });
+  }
 }
+
 export class Month extends Model {
   static entity = "months";
 
@@ -31,5 +42,10 @@ export class Month extends Model {
       name: this.attr(""),
       value: this.number(null),
     };
+  }
+  static fetch() {
+    return this.api().get("months", {
+      dataKey: "results",
+    });
   }
 }

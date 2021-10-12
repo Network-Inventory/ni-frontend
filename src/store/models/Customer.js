@@ -10,4 +10,9 @@ export default class Customer extends Model {
       description: this.attr(""),
     };
   }
+  static fetch() {
+    return this.api().get("customers", {
+      dataKey: "results",
+    });
+  }
 }
