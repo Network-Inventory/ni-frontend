@@ -5,7 +5,7 @@ export default class Customer extends Model {
 
   static fields() {
     return {
-      id: this.attr(null),
+      id: this.number(null),
       name: this.attr(""),
       description: this.attr(""),
     };
