@@ -4,11 +4,14 @@ import axios from "axios";
 import VuexORM from "@vuex-orm/core";
 import VuexORMAxios from "@vuex-orm/plugin-axios";
 
+import { ApiUrl } from "src/scripts/ApiUrl";
+
 import computers from "./computers";
 import Customer from "models/Customer";
 
 VuexORM.use(VuexORMAxios, {
   axios,
+  baseURL: ApiUrl,
 });
 const database = new VuexORM.Database();
 database.register(Customer);

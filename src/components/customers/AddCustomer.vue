@@ -58,7 +58,7 @@ export default {
 
     function addCustomer() {
       if (validateInput()) {
-        Customer.api().post("", {
+        Customer.api().post("customers", {
           name: customerName.value,
           description: customerDescription.value,
         });

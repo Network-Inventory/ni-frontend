@@ -112,7 +112,7 @@ export default {
       });
     }
 
-    Customer.api().get("", {
+    Customer.api().get("customers", {
       dataKey: "results",
     });
 
