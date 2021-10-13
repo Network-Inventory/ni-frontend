@@ -3,6 +3,7 @@
     <div class="q-pa-md q-gutter-sm">
       <q-btn label="Add Customer" color="primary" @click="showDialog" />
     </div>
+    {{ notifications }}
 
     <q-table
       @row-click="openDetails"
@@ -88,6 +89,7 @@ import AddCustomerDialog from "./AddCustomer.vue";
 
 import { Weekday, DayOfMonth, Month } from "models/core/Calendar";
 import { HoursInDay, MinutesInHour } from "models/core/Time";
+import { NotificationType, Notification } from "models/backups/Notification";
 import Customer from "models/Customer";
 
 export default {
@@ -96,6 +98,10 @@ export default {
 
     const router = useRouter();
     const data = computed(() => Customer.all());
+    const notifications = computed(() =>
+      Notification.query().withAll().first()
+    );
+    const types = computed(() => NotificationType.all());
 
     function openDetails(_, customer) {
       router.push({
@@ -119,6 +125,9 @@ export default {
     HoursInDay.fetch();
     MinutesInHour.fetch();
 
+    NotificationType.fetch();
+    Notification.fetch();
+
     Customer.fetch();
 
     return {
@@ -127,6 +136,8 @@ export default {
       openDetails,
       columns,
       showDialog,
+      notifications,
+      types,
     };
   },
 };

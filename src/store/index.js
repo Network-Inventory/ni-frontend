@@ -9,6 +9,7 @@ import { ApiUrl } from "src/scripts/ApiUrl";
 import computers from "./computers";
 import { Weekday, DayOfMonth, Month } from "models/core/Calendar";
 import { HoursInDay, MinutesInHour } from "models/core/Time";
+import { NotificationType, Notification } from "models/backups/Notification";
 import Customer from "models/Customer";
 
 VuexORM.use(VuexORMAxios, {
@@ -21,6 +22,8 @@ database.register(DayOfMonth);
 database.register(Month);
 database.register(HoursInDay);
 database.register(MinutesInHour);
+database.register(NotificationType);
+database.register(Notification);
 database.register(Customer);
 
 export default store(function (/* { ssrContext } */) {
