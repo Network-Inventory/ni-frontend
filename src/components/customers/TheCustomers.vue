@@ -3,7 +3,6 @@
     <div class="q-pa-md q-gutter-sm">
       <q-btn label="Add Customer" color="primary" @click="showDialog" />
     </div>
-    {{ notifications }}
 
     <q-table
       @row-click="openDetails"
@@ -101,7 +100,6 @@ export default {
     const notifications = computed(() =>
       Notification.query().withAll().first()
     );
-    const types = computed(() => NotificationType.all());
 
     function openDetails(_, customer) {
       router.push({
@@ -137,7 +135,6 @@ export default {
       columns,
       showDialog,
       notifications,
-      types,
     };
   },
 };

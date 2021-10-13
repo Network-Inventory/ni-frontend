@@ -7,11 +7,6 @@ export class NotificationType extends Model {
     return {
       id: this.number(null),
       name: this.attr(""),
-      notifications: this.hasMany(
-        Notification,
-        "notification_type_id",
-        "notification_type"
-      ),
     };
   }
   static fetch() {
@@ -35,7 +30,11 @@ export class Notification extends Model {
       name: this.attr(""),
       description: this.attr(""),
       recipient: this.attr(""),
-      notification_type: this.number(null),
+      notification_type_id: this.number(null),
+      notification_type: this.belongsTo(
+        NotificationType,
+        "notification_type_id"
+      ),
     };
   }
   static fetch() {
