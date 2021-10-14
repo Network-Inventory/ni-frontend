@@ -1,6 +1,6 @@
 import { Model } from "@vuex-orm/core";
 
-export class Cpu extends Model {
+export default class Cpu extends Model {
   static entity = "cpus";
 
   static fields() {
@@ -15,9 +15,9 @@ export class Cpu extends Model {
     });
   }
   static getById(id) {
-    return this.api().get(`cpus/id`);
+    return this.api().get(`cpus/${id}`);
   }
   static remove(id) {
-    return this.api().delete(`cpus/id`, { delete: id });
+    return this.api().delete(`cpus/${id}`, { delete: id });
   }
 }

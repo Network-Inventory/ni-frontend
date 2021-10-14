@@ -1,6 +1,6 @@
 import { Model } from "@vuex-orm/core";
 
-export class Disk extends Model {
+export default class Disk extends Model {
   static entity = "disks";
 
   static fields() {
@@ -15,9 +15,9 @@ export class Disk extends Model {
     });
   }
   static getById(id) {
-    return this.api().get(`disks/id`);
+    return this.api().get(`disks/${id}`);
   }
   static remove(id) {
-    return this.api().delete(`disks/id`, { delete: id });
+    return this.api().delete(`disks/${id}`, { delete: id });
   }
 }
