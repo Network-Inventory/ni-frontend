@@ -5,7 +5,7 @@
     "body": [
       "import { Model } from \"@vuex-orm/core\";",
       "",
-      "export class $TM_FILENAME_BASE extends Model {",
+      "export default class $TM_FILENAME_BASE extends Model {",
       "  static entity = \"${TM_FILENAME_BASE/(.*)/${1:/downcase}/}s\";",
       "",
       "  static fields() {",
@@ -20,10 +20,10 @@
       "    });",
       "  }",
       "  static getById(id) {",
-      "    return this.api().get(`${TM_FILENAME_BASE/(.*)/${1:/downcase}/}s/${id}`);",
+      "    return this.api().get(`${TM_FILENAME_BASE/(.*)/${1:/downcase}/}s/\\${id}`);",
       "  }",
       "  static remove(id) {",
-      "    return this.api().delete(`${TM_FILENAME_BASE/(.*)/${1:/downcase}/}s/${id}`, { delete: id });",
+      "    return this.api().delete(`${TM_FILENAME_BASE/(.*)/${1:/downcase}/}s/\\${id}`, { delete: id });",
       "  }",
       "}",
       ""
