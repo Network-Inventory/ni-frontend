@@ -14,7 +14,8 @@
 
 <script>
 import { ref } from "vue";
-import Customer from "models/Customer";
+import { Customer } from "models/customers";
+
 export default {
   props: ["customerId"],
   setup(props) {

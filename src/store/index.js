@@ -7,10 +7,15 @@ import VuexORMAxios from "@vuex-orm/plugin-axios";
 import { ApiUrl } from "src/scripts/ApiUrl";
 
 import computers from "./computers";
-import { Weekday, DayOfMonth, Month } from "models/core/Calendar";
-import { HoursInDay, MinutesInHour } from "models/core/Time";
-import { NotificationType, Notification } from "models/backups/Notification";
-import Customer from "models/Customer";
+import {
+  Weekday,
+  DayOfMonth,
+  Month,
+  HoursInDay,
+  MinutesInHour,
+} from "models/core";
+import { NotificationType, Notification } from "models/backups";
+import { Customer } from "models/customers";
 
 VuexORM.use(VuexORMAxios, {
   axios,

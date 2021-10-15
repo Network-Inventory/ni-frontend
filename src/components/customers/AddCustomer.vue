@@ -35,7 +35,7 @@
 import { useDialogPluginComponent } from "quasar";
 import { ref } from "vue";
 
-import Customer from "models/Customer";
+import { Customer } from "models/customers";
 
 export default {
   emits: [...useDialogPluginComponent.emits],
