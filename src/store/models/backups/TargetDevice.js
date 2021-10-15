@@ -1,7 +1,7 @@
 import { Model } from "@vuex-orm/core";
 
-export default class Backup extends Model {
-  static entity = "backups";
+export default class TargetDevice extends Model {
+  static entity = "target-devices";
 
   static fields() {
     return {
@@ -10,14 +10,14 @@ export default class Backup extends Model {
     };
   }
   static fetch() {
-    return this.api().get("backups", {
+    return this.api().get("target-devices", {
       dataKey: "results",
     });
   }
   static getById(id) {
-    return this.api().get(`backups/${id}`);
+    return this.api().get(`target-devices/${id}`);
   }
   static remove(id) {
-    return this.api().delete(`backups/${id}`, { delete: id });
+    return this.api().delete(`target-devices/${id}`, { delete: id });
   }
 }
