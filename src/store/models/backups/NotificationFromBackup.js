@@ -1,12 +1,19 @@
 import { Model } from "@vuex-orm/core";
 
+import { Backup } from ".";
+import { Notification } from ".";
+
 export default class NotificationFromBackup extends Model {
   static entity = "notifications-from-backup";
 
   static fields() {
     return {
       id: this.number(null),
-      name: this.attr(""),
+      backup_id: this.number(null),
+      notification_id: this.number(null),
+      // relationships
+      backup: this.belongsTo(Backup, "backup_id"),
+      notification: this.belongsTo(Notification, "notification_id"),
     };
   }
   static fetch() {

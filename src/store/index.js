@@ -16,8 +16,9 @@ import {
 } from "models/core";
 import {
   BackupMethod,
-  NotificationType,
   Notification,
+  NotificationFromBackup,
+  NotificationType,
   TargetDevice,
 } from "models/backups";
 import { Computer, Cpu, Disk, Gpu, Raid, Ram } from "models/computers";
@@ -35,8 +36,9 @@ database.register(HoursInDay);
 database.register(MinutesInHour);
 
 database.register(BackupMethod);
-database.register(NotificationType);
 database.register(Notification);
+database.register(NotificationFromBackup);
+database.register(NotificationType);
 database.register(TargetDevice);
 
 database.register(Computer);

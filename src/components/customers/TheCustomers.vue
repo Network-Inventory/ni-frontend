@@ -90,8 +90,9 @@ import { Weekday, DayOfMonth, Month } from "models/core/Calendar";
 import { HoursInDay, MinutesInHour } from "models/core/Time";
 import {
   BackupMethod,
-  NotificationType,
   Notification,
+  NotificationFromBackup,
+  NotificationType,
   TargetDevice,
 } from "models/backups";
 import { Customer, Location, Owner } from "models/customers";
@@ -129,8 +130,9 @@ export default {
     MinutesInHour.fetch();
 
     BackupMethod.fetch();
-    NotificationType.fetch();
     Notification.fetch();
+    NotificationFromBackup.fetch();
+    NotificationType.fetch();
     TargetDevice.fetch();
 
     Customer.fetch();
