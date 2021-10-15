@@ -1,5 +1,7 @@
 import { Model } from "@vuex-orm/core";
 
+import { Customer } from ".";
+
 export default class Location extends Model {
   static entity = "locations";
 
@@ -7,6 +9,8 @@ export default class Location extends Model {
     return {
       id: this.number(null),
       name: this.attr(""),
+      customer_id: this.number(null),
+      customer: this.belongsTo(Customer, "customer_id"),
     };
   }
   static fetch() {
