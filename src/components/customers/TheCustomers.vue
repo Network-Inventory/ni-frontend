@@ -88,7 +88,7 @@ import AddCustomerDialog from "./AddCustomer.vue";
 
 import { Weekday, DayOfMonth, Month } from "models/core/Calendar";
 import { HoursInDay, MinutesInHour } from "models/core/Time";
-import { NotificationType, Notification } from "models/backups";
+import { BackupMethod, NotificationType, Notification } from "models/backups";
 import { Customer, Location, Owner } from "models/customers";
 
 export default {
@@ -123,6 +123,7 @@ export default {
     HoursInDay.fetch();
     MinutesInHour.fetch();
 
+    BackupMethod.fetch();
     NotificationType.fetch();
     Notification.fetch();
 

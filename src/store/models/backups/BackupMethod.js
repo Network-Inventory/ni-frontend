@@ -7,6 +7,7 @@ export default class BackupMethod extends Model {
     return {
       id: this.number(null),
       name: this.attr(""),
+      description: this.attr(""),
     };
   }
   static fetch() {

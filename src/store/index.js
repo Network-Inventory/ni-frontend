@@ -14,7 +14,7 @@ import {
   HoursInDay,
   MinutesInHour,
 } from "models/core";
-import { NotificationType, Notification } from "models/backups";
+import { BackupMethod, NotificationType, Notification } from "models/backups";
 import { Customer, Location, Owner } from "models/customers";
 
 VuexORM.use(VuexORMAxios, {
@@ -27,6 +27,7 @@ database.register(DayOfMonth);
 database.register(Month);
 database.register(HoursInDay);
 database.register(MinutesInHour);
+database.register(BackupMethod);
 database.register(NotificationType);
 database.register(Notification);
 database.register(Customer);
