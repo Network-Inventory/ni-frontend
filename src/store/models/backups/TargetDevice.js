@@ -9,7 +9,6 @@ export default class TargetDevice extends Model {
   static fields() {
     return {
       id: this.number(null),
-      name: this.attr(""),
       device_id: this.number(null),
       backup_id: this.number(null),
       target_path: this.attr(""),
