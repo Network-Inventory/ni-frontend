@@ -15,7 +15,7 @@ import {
   MinutesInHour,
 } from "models/core";
 import { NotificationType, Notification } from "models/backups";
-import { Customer } from "models/customers";
+import { Customer, Location, Owner } from "models/customers";
 
 VuexORM.use(VuexORMAxios, {
   axios,
@@ -30,6 +30,8 @@ database.register(MinutesInHour);
 database.register(NotificationType);
 database.register(Notification);
 database.register(Customer);
+database.register(Location);
+database.register(Owner);
 
 export default store(function (/* { ssrContext } */) {
   const Store = createStore({
