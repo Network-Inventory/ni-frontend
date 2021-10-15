@@ -1,5 +1,7 @@
 import { Model } from "@vuex-orm/core";
 
+import { Computer } from "../computers";
+
 export default class Backup extends Model {
   static entity = "backups";
 
@@ -7,6 +9,9 @@ export default class Backup extends Model {
     return {
       id: this.number(null),
       name: this.attr(""),
+      computer_id: this.number(null),
+      // relationships
+      computer: this.belongsTo(Computer, "computer_id"),
     };
   }
   static fetch() {

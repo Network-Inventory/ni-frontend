@@ -14,7 +14,12 @@ import {
   HoursInDay,
   MinutesInHour,
 } from "models/core";
-import { BackupMethod, NotificationType, Notification } from "models/backups";
+import {
+  BackupMethod,
+  NotificationType,
+  Notification,
+  TargetDevice,
+} from "models/backups";
 import { Computer, Cpu, Disk, Gpu, Raid, Ram } from "models/computers";
 import { Customer, Location, Owner } from "models/customers";
 
@@ -32,6 +37,7 @@ database.register(MinutesInHour);
 database.register(BackupMethod);
 database.register(NotificationType);
 database.register(Notification);
+database.register(TargetDevice);
 
 database.register(Computer);
 database.register(Cpu);
