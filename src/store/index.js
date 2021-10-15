@@ -15,6 +15,7 @@ import {
   MinutesInHour,
 } from "models/core";
 import { BackupMethod, NotificationType, Notification } from "models/backups";
+import { Computer, Cpu, Disk, Gpu, Raid, Ram } from "models/computers";
 import { Customer, Location, Owner } from "models/customers";
 
 VuexORM.use(VuexORMAxios, {
@@ -27,9 +28,18 @@ database.register(DayOfMonth);
 database.register(Month);
 database.register(HoursInDay);
 database.register(MinutesInHour);
+
 database.register(BackupMethod);
 database.register(NotificationType);
 database.register(Notification);
+
+database.register(Computer);
+database.register(Cpu);
+database.register(Disk);
+database.register(Gpu);
+database.register(Raid);
+database.register(Ram);
+
 database.register(Customer);
 database.register(Location);
 database.register(Owner);
