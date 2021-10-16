@@ -1,3 +1,4 @@
+import ComputerLicense from "./ComputerLicense";
 import UserLicense from "./UserLicense";
 
-export { UserLicense };
+export { ComputerLicense, UserLicense };

@@ -35,7 +35,15 @@ import {
   Software,
   SoftwareArchitecture,
 } from "models/softwares";
-import { AdGroup, MailAlias, MailGroup, User, UserInAdGroup, UserInMailGroup } from "models/users";
+import {
+  AdGroup,
+  MailAlias,
+  MailGroup,
+  User,
+  UserInAdGroup,
+  UserInMailGroup,
+} from "models/users";
+import { ComputerLicense, UserLicense } from "models/licenses";
 
 VuexORM.use(VuexORMAxios, {
   axios,
@@ -81,6 +89,9 @@ database.register(MailGroup);
 database.register(User);
 database.register(UserInAdGroup);
 database.register(UserInMailGroup);
+
+database.register(ComputerLicense);
+database.register(UserLicense);
 
 export default store(function (/* { ssrContext } */) {
   const Store = createStore({
