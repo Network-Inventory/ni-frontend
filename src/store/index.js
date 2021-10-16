@@ -76,7 +76,7 @@ database.register(Software);
 database.register(SoftwareArchitecture);
 
 database.register(AdGroup);
-//database.register(MailAlias);
+database.register(MailAlias);
 database.register(MailGroup);
 database.register(User);
 database.register(UserInAdGroup);

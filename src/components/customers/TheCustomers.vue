@@ -173,9 +173,9 @@ export default {
     SoftwareArchitecture.fetch();
 
     AdGroup.fetch();
-    //MailAlias.fetch();
+    MailAlias.fetch();
     MailGroup.fetch();
-    //User.fetch();
+    User.fetch();
     UserInAdGroup.fetch();
     UserInMailGroup.fetch();
 
