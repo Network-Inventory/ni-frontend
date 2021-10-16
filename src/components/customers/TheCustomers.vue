@@ -105,7 +105,13 @@ import {
   Warranty,
 } from "models/devices";
 
-import { OperatingSystem, Software, SoftwareArchitecture } from "models/softwares";
+import {
+  OperatingSystem,
+  Software,
+  SoftwareArchitecture,
+} from "models/softwares";
+
+import { AdGroup, MailGroup } from "models/users";
 
 export default {
   setup() {
@@ -158,6 +164,9 @@ export default {
     OperatingSystem.fetch();
     Software.fetch();
     SoftwareArchitecture.fetch();
+
+    AdGroup.fetch();
+    MailGroup.fetch();
 
     return {
       deleteCustomer,
