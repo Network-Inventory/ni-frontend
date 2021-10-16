@@ -43,7 +43,7 @@ import {
   UserInAdGroup,
   UserInMailGroup,
 } from "models/users";
-import { ComputerLicense, UserLicense } from "models/licenses";
+import { ComputerLicense,LicenseWithComputer, UserLicense } from "models/licenses";
 
 VuexORM.use(VuexORMAxios, {
   axios,
@@ -91,6 +91,7 @@ database.register(UserInAdGroup);
 database.register(UserInMailGroup);
 
 database.register(ComputerLicense);
+database.register(LicenseWithComputer);
 database.register(UserLicense);
 
 export default store(function (/* { ssrContext } */) {
