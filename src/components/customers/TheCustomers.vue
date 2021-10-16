@@ -97,7 +97,7 @@ import {
 } from "models/backups";
 import { Customer, Location, Owner } from "models/customers";
 
-import { DeviceManufacturer } from "models/devices";
+import { DeviceManufacturer, DeviceCategory } from "models/devices";
 
 export default {
   setup() {
@@ -142,6 +142,7 @@ export default {
     Owner.fetch();
 
     DeviceManufacturer.fetch();
+    DeviceCategory.fetch();
 
     return {
       deleteCustomer,
