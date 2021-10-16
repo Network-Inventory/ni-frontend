@@ -23,7 +23,12 @@ import {
 } from "models/backups";
 import { Computer, Cpu, Disk, Gpu, Raid, Ram } from "models/computers";
 import { Customer, Location, Owner } from "models/customers";
-import { DeviceManufacturer, DeviceCategory, HardwareModel } from "models/devices";
+import {
+  DeviceManufacturer,
+  DeviceCategory,
+  HardwareModel,
+  WarrantyType,
+} from "models/devices";
 
 VuexORM.use(VuexORMAxios, {
   axios,
@@ -56,6 +61,7 @@ database.register(Owner);
 database.register(DeviceManufacturer);
 database.register(DeviceCategory);
 database.register(HardwareModel);
+database.register(WarrantyType);
 
 export default store(function (/* { ssrContext } */) {
   const Store = createStore({
