@@ -30,6 +30,7 @@ import {
   WarrantyType,
   Warranty,
 } from "models/devices";
+import { OperatingSystem, SoftwareArchitecture } from "models/softwares";
 
 VuexORM.use(VuexORMAxios, {
   axios,
@@ -64,6 +65,9 @@ database.register(DeviceCategory);
 database.register(HardwareModel);
 database.register(WarrantyType);
 database.register(Warranty);
+
+database.register(OperatingSystem);
+database.register(SoftwareArchitecture);
 
 export default store(function (/* { ssrContext } */) {
   const Store = createStore({

@@ -105,6 +105,8 @@ import {
   Warranty,
 } from "models/devices";
 
+import { OperatingSystem, SoftwareArchitecture } from "models/softwares";
+
 export default {
   setup() {
     const $q = useQuasar();
@@ -152,6 +154,9 @@ export default {
     HardwareModel.fetch();
     WarrantyType.fetch();
     Warranty.fetch();
+
+    OperatingSystem.fetch();
+    SoftwareArchitecture.fetch();
 
     return {
       deleteCustomer,
