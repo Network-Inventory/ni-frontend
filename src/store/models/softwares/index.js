@@ -1,4 +1,5 @@
 import OperatingSystem from "./OperatingSystem";
-import SoftwareArchitecture from "./SoftwareArchitecture"
+import Software from "./Software";
+import SoftwareArchitecture from "./SoftwareArchitecture";
 
-export { OperatingSystem, SoftwareArchitecture };
+export { OperatingSystem, Software, SoftwareArchitecture };

@@ -105,7 +105,7 @@ import {
   Warranty,
 } from "models/devices";
 
-import { OperatingSystem, SoftwareArchitecture } from "models/softwares";
+import { OperatingSystem, Software, SoftwareArchitecture } from "models/softwares";
 
 export default {
   setup() {
@@ -156,6 +156,7 @@ export default {
     Warranty.fetch();
 
     OperatingSystem.fetch();
+    Software.fetch();
     SoftwareArchitecture.fetch();
 
     return {
