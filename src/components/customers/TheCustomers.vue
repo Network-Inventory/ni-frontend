@@ -97,6 +97,8 @@ import {
 } from "models/backups";
 import { Customer, Location, Owner } from "models/customers";
 
+import { DeviceManufacturer } from "models/devices";
+
 export default {
   setup() {
     const $q = useQuasar();
@@ -138,6 +140,8 @@ export default {
     Customer.fetch();
     Location.fetch();
     Owner.fetch();
+
+    DeviceManufacturer.fetch();
 
     return {
       deleteCustomer,
