@@ -120,7 +120,11 @@ import {
   UserInMailGroup,
 } from "models/users";
 
-import { ComputerLicense, UserLicense } from "models/licenses";
+import {
+  ComputerLicense,
+  LicenseWithComputer,
+  UserLicense,
+} from "models/licenses";
 
 export default {
   setup() {
@@ -182,6 +186,7 @@ export default {
     UserInMailGroup.fetch();
 
     ComputerLicense.fetch();
+    LicenseWithComputer.fetch();
     UserLicense.fetch();
 
     return {
