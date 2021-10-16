@@ -120,6 +120,8 @@ import {
   UserInMailGroup,
 } from "models/users";
 
+import { UserLicense } from "models/licenses";
+
 export default {
   setup() {
     const $q = useQuasar();
@@ -178,6 +180,8 @@ export default {
     User.fetch();
     UserInAdGroup.fetch();
     UserInMailGroup.fetch();
+
+    UserLicense.fetch();
 
     return {
       deleteCustomer,
