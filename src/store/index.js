@@ -28,6 +28,7 @@ import {
   DeviceCategory,
   HardwareModel,
   WarrantyType,
+  Warranty,
 } from "models/devices";
 
 VuexORM.use(VuexORMAxios, {
@@ -62,6 +63,7 @@ database.register(DeviceManufacturer);
 database.register(DeviceCategory);
 database.register(HardwareModel);
 database.register(WarrantyType);
+database.register(Warranty);
 
 export default store(function (/* { ssrContext } */) {
   const Store = createStore({

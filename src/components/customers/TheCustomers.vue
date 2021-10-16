@@ -102,6 +102,7 @@ import {
   DeviceCategory,
   HardwareModel,
   WarrantyType,
+  Warranty,
 } from "models/devices";
 
 export default {
@@ -150,6 +151,7 @@ export default {
     DeviceCategory.fetch();
     HardwareModel.fetch();
     WarrantyType.fetch();
+    Warranty.fetch();
 
     return {
       deleteCustomer,

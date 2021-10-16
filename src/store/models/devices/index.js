@@ -4,6 +4,7 @@ import DeviceManufacturer from "./DeviceManufacturer";
 import DeviceInNet from "./DeviceInNet";
 import HardwareModel from "./HardwareModel";
 import WarrantyType from "./WarrantyType";
+import Warranty from "./Warranty";
 
 export {
   Device,
@@ -12,4 +13,5 @@ export {
   DeviceManufacturer,
   HardwareModel,
   WarrantyType,
+  Warranty,
 };
