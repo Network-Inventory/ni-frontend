@@ -111,7 +111,14 @@ import {
   SoftwareArchitecture,
 } from "models/softwares";
 
-import { AdGroup, MailGroup } from "models/users";
+import {
+  AdGroup,
+  MailAlias,
+  MailGroup,
+  User,
+  UserInAdGroup,
+  UserInMailGroup,
+} from "models/users";
 
 export default {
   setup() {
@@ -166,7 +173,11 @@ export default {
     SoftwareArchitecture.fetch();
 
     AdGroup.fetch();
+    //MailAlias.fetch();
     MailGroup.fetch();
+    //User.fetch();
+    UserInAdGroup.fetch();
+    UserInMailGroup.fetch();
 
     return {
       deleteCustomer,
