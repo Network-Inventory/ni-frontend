@@ -100,6 +100,7 @@ import { Customer, Location, Owner } from "models/customers";
 import {
   DeviceManufacturer,
   DeviceCategory,
+  DeviceInNet,
   HardwareModel,
   WarrantyType,
   Warranty,
@@ -173,6 +174,7 @@ export default {
 
     DeviceManufacturer.fetch();
     DeviceCategory.fetch();
+    DeviceInNet.fetch();
     HardwareModel.fetch();
     WarrantyType.fetch();
     Warranty.fetch();

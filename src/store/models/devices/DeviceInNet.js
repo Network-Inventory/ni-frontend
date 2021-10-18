@@ -1,9 +1,10 @@
 import { Model } from "@vuex-orm/core";
 
 import { Device } from ".";
+import { IpStatus, Net } from "../nets";
 
 export default class DeviceInNet extends Model {
-  static entity = "device-in-nets";
+  static entity = "devices-in-net";
 
   static fields() {
     return {
@@ -22,14 +23,14 @@ export default class DeviceInNet extends Model {
     };
   }
   static fetch() {
-    return this.api().get("device-in-nets", {
+    return this.api().get("devices-in-net", {
       dataKey: "results",
     });
   }
   static getById(id) {
-    return this.api().get(`device-in-nets/${id}`);
+    return this.api().get(`devices-in-net/${id}`);
   }
   static remove(id) {
-    return this.api().delete(`device-in-nets/${id}`, { delete: id });
+    return this.api().delete(`devices-in-net/${id}`, { delete: id });
   }
 }
