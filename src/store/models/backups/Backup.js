@@ -18,7 +18,7 @@ export default class Backup extends Model {
       software_id: this.number(null),
       source_path: this.attr(""),
       exec_time: this.attr(""),
-      //weekday_ids: this.attr([]),
+      weekday_ids: this.attr([]),
       target_device_ids: this.attr([]),
       // relationships
       computer: this.belongsTo(Computer, "computer_id"),
@@ -29,7 +29,16 @@ export default class Backup extends Model {
   }
   static fetch() {
     return this.api().get("backups", {
-      dataKey: "results",
+      //dataKey: "results",
+      dataTransformer: ({ data }) => {
+        const result = [];
+        data["results"].forEach((backup) => {
+          backup.weekday_ids = backup.exec_days;
+          result.
+        });
+        //console.log(transformedData);
+        return data;
+      },
     });
   }
   static getById(id) {
