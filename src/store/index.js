@@ -50,6 +50,8 @@ import {
   UserLicense,
 } from "models/licenses";
 
+import { IpStatus, Net } from "models/nets"
+
 VuexORM.use(VuexORMAxios, {
   axios,
   baseURL: ApiUrl,
@@ -99,6 +101,9 @@ database.register(ComputerLicense);
 database.register(LicenseWithComputer);
 database.register(LicenseWithUser);
 database.register(UserLicense);
+
+database.register(IpStatus)
+database.register(Net)
 
 export default store(function (/* { ssrContext } */) {
   const Store = createStore({

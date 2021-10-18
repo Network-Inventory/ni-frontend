@@ -127,6 +127,8 @@ import {
   UserLicense,
 } from "models/licenses";
 
+import { IpStatus, Net } from "models/nets";
+
 export default {
   setup() {
     const $q = useQuasar();
@@ -190,6 +192,9 @@ export default {
     LicenseWithComputer.fetch();
     LicenseWithUser.fetch();
     UserLicense.fetch();
+
+    IpStatus.fetch();
+    Net.fetch();
 
     return {
       deleteCustomer,
