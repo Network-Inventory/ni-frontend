@@ -15,6 +15,7 @@ import {
   MinutesInHour,
 } from "models/core";
 import {
+  Backup,
   BackupMethod,
   Notification,
   NotificationFromBackup,
@@ -51,7 +52,7 @@ import {
   UserLicense,
 } from "models/licenses";
 
-import { IpStatus, Net } from "models/nets"
+import { IpStatus, Net } from "models/nets";
 
 VuexORM.use(VuexORMAxios, {
   axios,
@@ -64,6 +65,7 @@ database.register(Month);
 database.register(HoursInDay);
 database.register(MinutesInHour);
 
+database.register(Backup);
 database.register(BackupMethod);
 database.register(Notification);
 database.register(NotificationFromBackup);
@@ -104,8 +106,8 @@ database.register(LicenseWithComputer);
 database.register(LicenseWithUser);
 database.register(UserLicense);
 
-database.register(IpStatus)
-database.register(Net)
+database.register(IpStatus);
+database.register(Net);
 
 export default store(function (/* { ssrContext } */) {
   const Store = createStore({

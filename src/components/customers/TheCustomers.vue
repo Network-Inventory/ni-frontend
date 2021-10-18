@@ -89,6 +89,7 @@ import AddCustomerDialog from "./AddCustomer.vue";
 import { Weekday, DayOfMonth, Month } from "models/core/Calendar";
 import { HoursInDay, MinutesInHour } from "models/core/Time";
 import {
+  Backup,
   BackupMethod,
   Notification,
   NotificationFromBackup,
@@ -162,6 +163,7 @@ export default {
     HoursInDay.fetch();
     MinutesInHour.fetch();
 
+    Backup.fetch();
     BackupMethod.fetch();
     Notification.fetch();
     NotificationFromBackup.fetch();
