@@ -123,6 +123,7 @@ import {
 import {
   ComputerLicense,
   LicenseWithComputer,
+  LicenseWithUser,
   UserLicense,
 } from "models/licenses";
 
@@ -187,6 +188,7 @@ export default {
 
     ComputerLicense.fetch();
     LicenseWithComputer.fetch();
+    LicenseWithUser.fetch();
     UserLicense.fetch();
 
     return {
