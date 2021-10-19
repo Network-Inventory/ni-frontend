@@ -33,11 +33,10 @@ export default class Backup extends Model {
       dataTransformer: ({ data }) => {
         const result = [];
         data["results"].forEach((backup) => {
-          backup.weekday_ids = backup.exec_days;
-          result.
+          backup.weekday_ids = backup.weekdays;
+          result.push(backup);
         });
-        //console.log(transformedData);
-        return data;
+        return result;
       },
     });
   }
