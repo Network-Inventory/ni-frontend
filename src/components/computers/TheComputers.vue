@@ -31,10 +31,9 @@
 import { useQuasar } from "quasar";
 import { useRouter } from "vue-router";
 import { computed } from "vue";
-import { useStore } from "vuex";
 import AddComputerDialog from "./AddComputer.vue";
 
-import getAPI from "../../scripts/axios-api";
+import { Computer } from "models/computers";
 
 export default {
   setup() {
@@ -117,8 +116,7 @@ export default {
 
     const $q = useQuasar();
     const router = useRouter();
-    const $store = useStore();
-    const data = computed(() => $store.getters["computers/computers"]);
+    const data = computed(() => Computer.all());
 
     function openDetails(_, row) {
       router.push({
@@ -137,14 +135,7 @@ export default {
       }
     }
     function deleteComputer(id) {
-      getAPI
-        .delete("/computers/" + id)
-        .then(() => {
-          $store.dispatch("computers/loadAllComputers");
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      Computer.remove(id);
     }
 
     function showDialog() {
@@ -152,7 +143,7 @@ export default {
         component: AddComputerDialog,
       });
     }
-    $store.dispatch("computers/loadAllComputers");
+    Computer.fetch();
     return {
       dateColour,
       deleteComputer,

@@ -6,7 +6,6 @@ import VuexORMAxios from "@vuex-orm/plugin-axios";
 
 import { ApiUrl } from "src/scripts/ApiUrl";
 
-import computers from "./computers";
 import {
   Weekday,
   DayOfMonth,
@@ -25,6 +24,7 @@ import {
 import { Computer, Cpu, Disk, Gpu, Raid, Ram } from "models/computers";
 import { Customer, Location, Owner } from "models/customers";
 import {
+  Device,
   DeviceCategory,
   DeviceInNet,
   DeviceManufacturer,
@@ -83,6 +83,7 @@ database.register(Customer);
 database.register(Location);
 database.register(Owner);
 
+database.register(Device);
 database.register(DeviceManufacturer);
 database.register(DeviceCategory);
 database.register(DeviceInNet);
@@ -111,9 +112,7 @@ database.register(Net);
 
 export default store(function (/* { ssrContext } */) {
   const Store = createStore({
-    modules: {
-      computers,
-    },
+    modules: {},
     plugins: [VuexORM.install(database)],
 
     // enable strict mode (adds overhead!)

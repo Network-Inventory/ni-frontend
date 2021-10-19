@@ -99,6 +99,7 @@ import {
 import { Customer, Location, Owner } from "models/customers";
 
 import {
+  Device,
   DeviceManufacturer,
   DeviceCategory,
   DeviceInNet,
@@ -130,6 +131,8 @@ import {
 } from "models/licenses";
 
 import { IpStatus, Net } from "models/nets";
+
+import { Computer, Cpu, Disk, Gpu, Raid, Ram } from "models/computers";
 
 export default {
   setup() {
@@ -174,6 +177,7 @@ export default {
     Location.fetch();
     Owner.fetch();
 
+    Device.fetch();
     DeviceManufacturer.fetch();
     DeviceCategory.fetch();
     DeviceInNet.fetch();
@@ -199,6 +203,13 @@ export default {
 
     IpStatus.fetch();
     Net.fetch();
+
+    Computer.fetch();
+    Cpu.fetch();
+    Disk.fetch();
+    Gpu.fetch();
+    Raid.fetch();
+    Ram.fetch();
 
     return {
       deleteCustomer,

@@ -49,14 +49,14 @@
 <script>
 import { useDialogPluginComponent } from "quasar";
 import { ref, computed } from "vue";
-import { useStore } from "vuex";
 
+import { Computer } from "models/computers";
 import { Customer } from "models/customers";
+import { DeviceCategory } from "models/devices";
 
 export default {
   emits: [...useDialogPluginComponent.emits],
   setup(_, context) {
-    const $store = useStore();
     const { dialogRef, onDialogHide, onDialogOK, onDialogCancel } =
       useDialogPluginComponent();
     const computerName = ref("");
@@ -67,9 +67,7 @@ export default {
     dialogRef.value = false;
 
     const customers = computed(() => Customer.all());
-    const categories = computed(
-      () => $store.getters["devices/deviceCategories"]
-    );
+    const categories = computed(() => DeviceCategory.all());
 
     function validateInput() {
       if (computerName.value === "") {
@@ -88,9 +86,12 @@ export default {
           customer: selectedCustomer.value.id,
           category: selectedCategory.value.id,
         };
-        $store.dispatch("computers/addComputer", payload);
+        Computer.insert(payload);
       }
     }
+
+    Customer.fetch();
+    DeviceCategory.fetch();
 
     return {
       computerName,
