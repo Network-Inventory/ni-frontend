@@ -29,7 +29,6 @@
 
 <script>
 import { useQuasar } from "quasar";
-import { useRouter } from "vue-router";
 import { computed } from "vue";
 import AddComputerDialog from "./AddComputer.vue";
 
@@ -115,7 +114,6 @@ export default {
     ];
 
     const $q = useQuasar();
-    const router = useRouter();
     const data = computed(() => Computer.all());
 
     function openDetails(_, row) {
